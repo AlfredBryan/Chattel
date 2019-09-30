@@ -1,0 +1,33 @@
+## CHATTEL
+ A platform that helps property owners manage their properties.
+ - Land-lords creates an account on the plateform.
+ - They then subscribe to one of the available packages <Free, Basic, Premium>
+ -Land-lords then input the details of the property they want to manage
+   ** Type of property <House, Shop, Warehouse, Land, e.t.c>
+   ** is the property on Lease, or on rent
+   ** Where the property is located
+
+- Details of the tenant
+  ** Names of the tenant
+  ** Phone number and email address
+  ** Adress of the tenant, if property is not a house
+  ** Date last rent was paid
+  ** Date rent is to expire
+  ** is the property on lease or rent
+  ** number of years paid for
+
+- Also land-lords can notify their tenants through the platform, incase of increase in rents,
+  meetings, or letting the tenants know they are to vacate the property.
+
+- Land-lord that are subscribe to the basic or premium packagecan post properties they want to,
+  sell, lease, or rent out on the platform marketplace
+
+- Land-lords on the free package can only manage 1 property and 1 tenant, also they can also recieve notifications through     emails.
+
+- Land-lords on the basic pacakge can manage up to 5 properties with maybe 5 tenants for each property, and they get notifications through sms and emails.
+
+-Land-lords on the premium package can manage up to 10 properties with 10 tenants for each property, and they get notifications through sms and emails.
+
+-Land-lords on the Unlimited package can manage unlimited number of properties and tenants, and they get notifications through sms and emails.
+
+-Land-lords and tenant get notifications a few months to the expiry of the tenant's rent
