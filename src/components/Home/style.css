@@ -1,0 +1,63 @@
+body {
+    background: linear-gradient(180deg, #662892 6.2%, #7B35AE 80.21%);
+}
+
+.home-main {
+    margin: 6em 0em 0em 2em;
+    color: white;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 63px;
+}
+
+.bg_image {
+    margin-top: 7em;
+}
+
+.site_description {
+    color: white;
+    margin: 1em 0em 0em 2.5em;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 100;
+    font-size: 30px;
+    line-height: 41px;
+    letter-spacing: 0.05em;
+}
+
+.main_buttons {
+    margin-left: 4.5em !important;
+    margin-top: 2em;
+    display: flex;
+}
+
+.signin_design {
+    color: white;
+    width: 200px;
+    height: 46px;
+    background: #FF7C02;
+    border-radius: 50px;
+    text-align: center;
+    margin: 0em 2em 0em 0em;
+}
+
+.find_property {
+    color: white;
+    width: 243px;
+    height: 46px;
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 50px;
+    text-align: center
+}
+
+.find_property h5 {
+    padding: 0.5em;
+}
+
+.signin_design h5 {
+    padding: 0.5em;
+}
+
+@media screen and (max-width: 600px) {}

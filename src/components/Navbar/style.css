@@ -1,0 +1,13 @@
+.navbar_main {
+    background: linear-gradient(180deg, #662892 6.2%, #7B35AE 80.21%) !important;
+}
+
+.nav-link {
+    color: white !important;
+    font-family: Roboto;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 20px !important;
+    line-height: 23px !important;
+    letter-spacing: 0.05em !important;
+}
