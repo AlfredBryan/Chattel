@@ -1,11 +1,13 @@
 import React from "react";
-import CustomNav from "./components/Navbar/CustomNav";
 import Home from "./components/Home/Home";
+import { Switch, Route } from "react-router-dom";
 
 function App() {
   return (
     <div>
-      <Home/>
+      <Switch>
+        <Route exact path="/" component={Home} />
+      </Switch>
     </div>
   );
 }
