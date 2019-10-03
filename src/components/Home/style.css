@@ -3,7 +3,7 @@
 }
 
 .bg_img {
-  width: 100%;
+  max-width: 100%;
   height: 900px;
 }
 
@@ -228,6 +228,7 @@
   padding: 0.25em;
   cursor: pointer;
 }
+
 .feature_header {
   font-family: Roboto;
   font-style: normal;
@@ -239,19 +240,26 @@
   text-align: center;
   padding-bottom: 2em;
 }
+
 .feature_section {
   margin-bottom: 8em;
   margin-top: 3em;
 }
+
 .main_feature {
   display: flex;
 }
+
 .feature_img {
-    margin-left: 4em;
+  margin-left: 4em;
+  width: 638px;
+  height: 334px;
 }
+
 .feature_text {
-    margin-left: 4em
+  margin-left: 4em
 }
+
 .p_management {
   font-family: Roboto;
   font-style: normal;
@@ -262,6 +270,7 @@
   color: #662892;
   margin-bottom: 0.5em;
 }
+
 .feature_text p {
   font-family: Roboto;
   font-style: normal;
@@ -271,6 +280,7 @@
   letter-spacing: 0.19em;
   color: #000000;
 }
+
 .s_money {
   font-family: Roboto;
   font-style: normal;
@@ -283,9 +293,88 @@
   margin-top: 2em;
 }
 
+.testimonials {
+  margin-top: 5em;
+}
+
+.center_div {
+  text-align: center;
+}
+
+
+
+.test_1 {
+  width: 600px;
+  height: 450px;
+  border-radius: 50px;
+  border: 3px solid #662896;
+  display: inline-block;
+  margin-bottom: 4em;
+}
+
+.test_img {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  border: 8px solid #FFFFFF;
+  background: grey;
+  margin: 0em 0em 0em 14em
+}
+
+.test_text {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 30px;
+  line-height: 35px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  color: #000000;
+}
+
+.testifier {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 35px;
+  letter-spacing: 0.05em;
+  color: #662698;
+  margin-top: 1em;
+}
+
+.test_header {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 54px;
+  line-height: 63px;
+  letter-spacing: 0.16em;
+  color: #FF9921;
+  text-align: center;
+  padding-bottom: 2em;
+}
+
+.carousel .slide img {
+  display: none;
+}
+
+
+.carousel .slide {
+  background: #ffffff
+}
+
+.carousel .thumb {
+  display: none;
+}
+
+.carousel .control-dots .dot.selected {
+  background: #662896;
+}
+
 @media screen and (max-width: 600px) {
   .bg_img {
-    width: 100%;
+    width: 100% !important;
     height: 900px;
   }
 
@@ -297,6 +386,7 @@
     top: 85%;
     left: 30%;
   }
+
   .first_button {
     top: 77%;
     left: 30%;
@@ -339,8 +429,26 @@
     top: 60%;
     left: 24%;
   }
+
   .price_section {
     background: white;
     height: 750px;
+  }
+
+  .main_feature {
+    display: block;
+  }
+
+  .pricing_list {
+    padding: 0em;
+  }
+
+  .feature_img {
+    margin-left: 0em;
+  }
+
+  .feature_text {
+    margin-left: 2em;
+    margin-top: 2em;
   }
 }
