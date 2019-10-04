@@ -22,12 +22,15 @@ class Auth {
     password = bcrypt.hashSync(password, 10);
 
     // if no user exist in database, make first user to register admin
-    const checkAdmin = await Users.findAll();
-    if (checkAdmin.length === 0) isAdmin = true;
+    const checkAdmin = await Users.findOne({
+      where: {},
+    });
+    
+    if (!checkAdmin) isAdmin = true;
 
     try {
-      // eslint-disable-next-line no-unused-vars
-      const data = await Users.create({
+
+      await Users.create({
         firstname,
         lastname,
         email,
@@ -83,9 +86,9 @@ class Auth {
     // sign user token
     const token = jwt.sign({
       id: result.id,
-      level: result.level,
+      isAdmin: result.isAdmin,
     },
-    process.env.SECRET_KEY, { expiresIn: '30d' });
+      process.env.SECRET_KEY, { expiresIn: '30d' });
 
     // unset user password
     result.password = undefined;

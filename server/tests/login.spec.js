@@ -16,25 +16,21 @@ chai.use(chaiHttp);
 chai.should();
 
 const createUser = () => {
-  Users.create({
+  return Users.create({
     email: 'john004@gmail.com', password: hash('johnp', 10), firstname: 'John', lastname: 'Doe', gender: 'male', isAdmin: false,
   });
 };
 
-describe('User Login', () => {
-  before((done) => {
-    createUser();
-    console.log('before');
-    done();
+describe('User Login eeehn', () => {
+  before(async () => {
+    await createUser();
   });
 
-  after((done) => {
-    console.log('after');
-    Users.destroy({
+  after(async () => {
+    await Users.destroy({
       where: {},
       truncate: true,
     });
-    done();
   });
 
   it('should check if login is valid if email is empty', (done) => {

@@ -52,7 +52,7 @@ class authenticate {
     const { token } = req.headers;
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
 
-    if (decoded.level !== 'admin') {
+    if (!decoded.isAdmin) {
       const err = new Error();
       err.message = 'not authorized';
       err.statusCode = 401;
