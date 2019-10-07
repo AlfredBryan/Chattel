@@ -4,7 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const errorHandler = require('./middlewares/errorhandler');
-const router = require('./routes/router');
+const auth = require('./routes/auth');
 
 // set web server port according to environment
 const port = () => {
@@ -27,8 +27,8 @@ app.use(logger('dev'));
 // use cross origin module
 app.use(cors('*'));
 
-// set api routes
-app.use(router);
+// set authentication api routes
+app.use(auth);
 
 // set error handler
 app.use(errorHandler);
