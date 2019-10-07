@@ -35,6 +35,22 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
+    phone_number: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+      // isNum: {
+      //  args: true,
+      //  msg: 'Invalid Phone Number',
+      // },
+      },
+    },
+    package_type: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: false,
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,

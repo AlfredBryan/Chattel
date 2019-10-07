@@ -23,12 +23,13 @@
     "eslint-plugin-import": "^2.18.2",
     "faker": "^4.1.0",
     "mocha": "^6.0.2",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "nyc": "^14.1.1"
   },
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "mocha tests/*.js --timeout 10000 --exit"
+    "test": "mocha tests/*.js --exit"
   },
   "keywords": [],
   "author": "",

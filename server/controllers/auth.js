@@ -16,6 +16,10 @@ class Auth {
       lastname,
       email,
       gender,
+      // eslint-disable-next-line camelcase
+      phone_number,
+      // eslint-disable-next-line camelcase
+      package_type,
     } = req.body;
     let { password } = req.body;
     let isAdmin = false;
@@ -25,17 +29,18 @@ class Auth {
     const checkAdmin = await Users.findOne({
       where: {},
     });
-    
+
     if (!checkAdmin) isAdmin = true;
 
     try {
-
       await Users.create({
         firstname,
         lastname,
         email,
         isAdmin,
         gender,
+        phone_number,
+        package_type,
         password,
       });
     } catch (error) {
@@ -88,7 +93,7 @@ class Auth {
       id: result.id,
       isAdmin: result.isAdmin,
     },
-      process.env.SECRET_KEY, { expiresIn: '30d' });
+    process.env.SECRET_KEY, { expiresIn: '30d' });
 
     // unset user password
     result.password = undefined;

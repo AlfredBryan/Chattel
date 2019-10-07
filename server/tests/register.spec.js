@@ -1,3 +1,4 @@
+/* eslint-disable object-property-newline */
 /* eslint-disable no-console */
 /* eslint-disable no-undef */
 process.env.NODE_ENV = 'test';
@@ -17,24 +18,21 @@ chai.should();
 
 const hash = bcrypt.hashSync;
 
-const createUser = () => {
-  Users.create({
-    email: 'john@gmail.com', password: hash('johnp', 10), firstname: 'John', lastname: 'Doe', gender: 'male', isAdmin: false,
-  });
-};
+const createUser = () => Users.create({
+  email: 'john@gmail.com', password: hash('johnp', 10), firstname: 'John', lastname: 'Doe',
+  gender: 'male', phone_number: '08044679071', package_type: '1', isAdmin: false,
+});
 
 describe('User Registration', () => {
-  before((done) => {
-    createUser();
-    done();
+  before(async () => {
+    await createUser();
   });
 
-  after((done) => {
-    Users.destroy({
+  after(async () => {
+    await Users.destroy({
       where: {},
       truncate: true,
     });
-    done();
   });
 
   it('should check if registration is valid without firstname', (done) => {
@@ -45,6 +43,8 @@ describe('User Registration', () => {
         username: '',
         email: '',
         gender: '',
+        phone_number: '',
+        package_type: '',
         password: '',
         password2: '',
       })
@@ -60,9 +60,10 @@ describe('User Registration', () => {
       .post(url)
       .send({
         firstname: '',
-        username: '',
         email: '',
         gender: '',
+        phone_number: '',
+        package_type: '',
         password: '',
         password2: '',
       })
@@ -78,9 +79,10 @@ describe('User Registration', () => {
       .post(url)
       .send({
         firstname: '',
-        username: '',
         lastname: '',
         gender: '',
+        phone_number: '',
+        package_type: '',
         password: '',
         password2: '',
       })
@@ -96,9 +98,10 @@ describe('User Registration', () => {
       .post(url)
       .send({
         firstname: '',
-        username: '',
-        email: '',
         lastname: '',
+        email: '',
+        phone_number: '',
+        package_type: '',
         password: '',
         password2: '',
       })
@@ -109,15 +112,54 @@ describe('User Registration', () => {
       });
   });
 
+  it('should check if registration is valid without phone number', (done) => {
+    chai.request(server)
+      .post(url)
+      .send({
+        firstname: '',
+        lastname: '',
+        email: '',
+        gender: '',
+        package_type: '',
+        password: '',
+        password2: '',
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.message.should.be.equal('phone_number is required');
+        done();
+      });
+  });
+
+  it('should check if registration is valid without package_type', (done) => {
+    chai.request(server)
+      .post(url)
+      .send({
+        firstname: '',
+        lastname: '',
+        email: '',
+        gender: '',
+        phone_number: '',
+        password: '',
+        password2: '',
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.message.should.be.equal('package_type is required');
+        done();
+      });
+  });
+
   it('should check if registration is valid without password', (done) => {
     chai.request(server)
       .post(url)
       .send({
         firstname: '',
         lastname: '',
-        username: '',
         email: '',
         gender: '',
+        phone_number: '',
+        package_type: '',
         password2: '',
       })
       .end((err, res) => {
@@ -133,12 +175,13 @@ describe('User Registration', () => {
       .post(url)
       .send({
         firstname: '',
-        lastname: '',
-        username: '',
-        email: '',
-        gender: '',
-        password: '',
-        password2: '',
+        lastname: 'test',
+        email: 'test',
+        phone_number: '24567890',
+        package_type: '1',
+        gender: 'male',
+        password: 'wertyhjkl',
+        password2: 'wertyuio',
       })
       .end((err, res) => {
         res.should.have.status(400);
@@ -151,13 +194,14 @@ describe('User Registration', () => {
     chai.request(server)
       .post(url)
       .send({
-        firstname: faker.name.firstName(),
+        firstname: 'fhgdjk',
         lastname: '',
-        username: '',
-        email: '',
-        gender: '',
-        password: '',
-        password2: '',
+        email: 'dgfchvjk',
+        phone_number: '124567890',
+        package_type: '1',
+        gender: 'male',
+        password: 'sfdghjkl',
+        password2: 'etryuio',
       })
       .end((err, res) => {
         res.should.have.status(400);
@@ -170,13 +214,14 @@ describe('User Registration', () => {
     chai.request(server)
       .post(url)
       .send({
-        firstname: faker.name.firstName(),
-        lastname: faker.name.lastName(),
-        username: faker.internet.userName(),
+        firstname: 'dfghjk',
+        lastname: 'fhgjkujk',
         email: '',
-        gender: '',
-        password: '',
-        password2: '',
+        phone_number: '+244908465785',
+        package_type: '1',
+        gender: 'male',
+        password: 'fghjkl',
+        password2: 'dghft',
       })
       .end((err, res) => {
         res.should.have.status(400);
@@ -189,13 +234,14 @@ describe('User Registration', () => {
     chai.request(server)
       .post(url)
       .send({
-        firstname: faker.name.firstName(),
-        lastname: faker.name.lastName(),
-        username: faker.internet.userName(),
-        email: faker.internet.email(),
+        firstname: 'dfghjk',
+        lastname: 'rftghyjuk',
+        email: 'gfhjklkjh',
+        phone_number: '+244456789049',
+        package_type: '1',
         gender: '',
-        password: '',
-        password2: '',
+        password: 'fghjk',
+        password2: 'gfhjk',
       })
       .end((err, res) => {
         res.should.have.status(400);
@@ -204,17 +250,58 @@ describe('User Registration', () => {
       });
   });
 
+  it('should check if registration is valid if phone number is empty', (done) => {
+    chai.request(server)
+      .post(url)
+      .send({
+        firstname: 'fdghjkl',
+        lastname: 'dgfhjkl;',
+        email: 'fhvgjkl;',
+        package_type: '1',
+        phone_number: '',
+        gender: 'male',
+        password: 'fhgjk',
+        password2: 'gfhj',
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.message.should.be.equal('phone_number cannot be empty');
+        done();
+      });
+  });
+
+  it('should check if registration is valid if package_type is empty', (done) => {
+    chai.request(server)
+      .post(url)
+      .send({
+        firstname: 'dgfthjkl',
+        lastname: 'dfghjklhkj',
+        email: 'fghjkl;j',
+        phone_number: '+2449072182162',
+        package_type: '',
+        gender: 'male',
+        password: 'fghjkl',
+        password2: 'fdghjk',
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.message.should.be.equal('package_type cannot be empty');
+        done();
+      });
+  });
+
   it('should check if registration is valid if password is empty', (done) => {
     chai.request(server)
       .post(url)
       .send({
-        firstname: faker.name.firstName(),
-        lastname: faker.name.lastName(),
-        username: faker.internet.userName(),
-        email: faker.internet.email(),
+        firstname: 'fghjkl',
+        lastname: 'fghjkl;',
+        email: 'dgfhjkl;',
         gender: 'male',
+        phone_number: '+244556778',
+        package_type: '1',
         password: '',
-        password2: '',
+        password2: 'fhgjkl',
       })
       .end((err, res) => {
         res.should.have.status(400);
@@ -228,12 +315,13 @@ describe('User Registration', () => {
       .post(url)
       .send({
         firstname: 'je',
-        lastname: 'sa',
-        username: 'sa',
-        email: 'sa',
-        gender: 'ma',
-        password: 'ja',
-        password2: '',
+        lastname: 'sgfcjhfka',
+        email: 'shdkffla',
+        gender: 'male',
+        phone_number: '+244556778',
+        package_type: '1',
+        password: 'jahged',
+        password2: 'hkdvjd',
       })
       .end((err, res) => {
         res.should.have.status(400);
@@ -248,11 +336,13 @@ describe('User Registration', () => {
       .send({
         firstname: 'jeremiah',
         lastname: 'sa',
-        username: 'sa',
-        email: 'sa',
-        gender: 'sa',
-        password: 'sa',
-        password2: '',
+        username: 'sahjk',
+        email: 'savghjk',
+        gender: 'male',
+        phone_number: '+244556778',
+        package_type: '1',
+        password: 'sagfhj',
+        password2: 'gfhjk',
       })
       .end((err, res) => {
         res.should.have.status(400);
@@ -267,11 +357,12 @@ describe('User Registration', () => {
       .send({
         firstname: 'jeremiah',
         lastname: 'samuel',
-        username: 'sammyjay',
         email: 'sammyjay@yahoo.com',
-        gender: 'hgt',
-        password: 'sa',
-        password2: '',
+        gender: 'mal',
+        phone_number: '+244556778',
+        package_type: '1',
+        password: 'sahj',
+        password2: 'gjfdhk',
       })
       .end((err, res) => {
         res.should.have.status(400);
@@ -289,8 +380,10 @@ describe('User Registration', () => {
         username: faker.internet.userName(),
         email: faker.internet.email(),
         gender: 'male',
-        password: 'fh',
-        password2: '',
+        phone_number: '+244556778',
+        package_type: '1',
+        password: 'fhh',
+        password2: 'fhh',
       })
       .end((err, res) => {
         res.should.have.status(400);
@@ -308,8 +401,10 @@ describe('User Registration', () => {
         username: faker.internet.userName(),
         email: faker.internet.email(),
         gender: 'fmale',
-        password: faker.internet.password(),
-        password2: '',
+        phone_number: '+244556778',
+        package_type: '1',
+        password: 'jmnxjfc',
+        password2: 'jhdkdd',
       })
       .end((err, res) => {
         res.should.have.status(400);
@@ -327,8 +422,10 @@ describe('User Registration', () => {
         username: faker.internet.userName(),
         email: 'hdjff',
         gender: 'male',
-        password: faker.internet.password(),
-        password2: '',
+        phone_number: '+244556778',
+        package_type: '1',
+        password: 'hdcjkh',
+        password2: 'gjdhfd',
       })
       .end((err, res) => {
         res.should.have.status(400);
@@ -346,6 +443,8 @@ describe('User Registration', () => {
         username: faker.internet.userName(),
         email: faker.internet.email(),
         gender: 'male',
+        phone_number: '+244556778',
+        package_type: '1',
         password: faker.internet.password(),
         password2: faker.internet.password(),
       })
@@ -365,12 +464,35 @@ describe('User Registration', () => {
         username: faker.internet.userName(),
         email: 'john@gmail.com',
         gender: 'male',
+        phone_number: '+244556778',
+        package_type: '1',
         password: 'test009',
         password2: 'test009',
       })
       .end((err, res) => {
         res.should.have.status(400);
         res.body.message.should.be.equal('email already exists');
+        done();
+      });
+  });
+
+  it('check if registration is valid if phone number already exists', (done) => {
+    chai.request(server)
+      .post(url)
+      .send({
+        firstname: faker.name.firstName(),
+        lastname: faker.name.lastName(),
+        username: faker.internet.userName(),
+        email: 'test@gmail.com',
+        gender: 'male',
+        phone_number: '08044679071',
+        package_type: '1',
+        password: 'test009',
+        password2: 'test009',
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.message.should.be.equal('phone number already exists');
         done();
       });
   });
@@ -382,8 +504,10 @@ describe('User Registration', () => {
         firstname: faker.name.firstName(),
         lastname: faker.name.lastName(),
         username: faker.internet.userName(),
-        email: 'test@gmail.com',
+        email: 'test567@gmail.com',
         gender: 'male',
+        phone_number: '+244556778',
+        package_type: '1',
         password: 'test009',
         password2: 'test009',
       })

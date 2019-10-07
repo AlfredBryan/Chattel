@@ -267,5 +267,30 @@ class validator {
 
     return next();
   }
+
+  /**
+   * checks if phone number exists
+   * @param {object} req - api request
+   * @param {object} res - api response
+   * @param {function} next - next middleware function
+   */
+  static async checkNumberExists(req, res, next) {
+    // eslint-disable-next-line camelcase
+    const { phone_number } = req.body;
+    const result = await Users.findOne({
+      where: {
+        phone_number,
+      },
+    });
+
+    if (result) {
+      const err = new Error();
+      err.message = 'phone number already exists';
+      err.statusCode = 400;
+      return next(err);
+    }
+
+    return next();
+  }
 }
 module.exports = validator;

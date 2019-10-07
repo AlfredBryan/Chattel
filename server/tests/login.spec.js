@@ -1,3 +1,4 @@
+/* eslint-disable object-property-newline */
 /* eslint-disable no-console */
 /* eslint-disable no-undef */
 process.env.NODE_ENV = 'test';
@@ -15,13 +16,12 @@ const hash = bcrypt.hashSync;
 chai.use(chaiHttp);
 chai.should();
 
-const createUser = () => {
-  return Users.create({
-    email: 'john004@gmail.com', password: hash('johnp', 10), firstname: 'John', lastname: 'Doe', gender: 'male', isAdmin: false,
-  });
-};
+const createUser = () => Users.create({
+  email: 'john004@gmail.com', password: hash('johnp', 10), firstname: 'John', lastname: 'Doe',
+  phone_number: '08009856578', package_type: '1', gender: 'male', isAdmin: false,
+});
 
-describe('User Login eeehn', () => {
+describe('User Login', () => {
   before(async () => {
     await createUser();
   });
