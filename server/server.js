@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const errorHandler = require('./middlewares/errorhandler');
 const auth = require('./routes/auth');
+const property = require('./routes/property');
 
 // set web server port according to environment
 const port = () => {
@@ -29,6 +30,9 @@ app.use(cors('*'));
 
 // set authentication api routes
 app.use(auth);
+
+// set property api routes
+app.use(property);
 
 // set error handler
 app.use(errorHandler);

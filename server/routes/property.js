@@ -2,7 +2,7 @@ const router = require('express').Router();
 const validator = require('../middlewares/validator');
 // eslint-disable-next-line no-unused-vars
 const authenticate = require('../middlewares/authentication');
-// const propertyController = require('../controllers/property');
+const propertyController = require('../controllers/property');
 
 const url = '/api/v1';
 
@@ -14,6 +14,7 @@ router
     validator.checkBodyContains('property_type', 'num_apartment', 'num_bathroom', 'address', 'rentage_amount'),
     validator.checkBodyNotEmpty('property_type', 'num_apartment', 'num_bathroom', 'address', 'rentage_amount'),
     validator.checkBodyValidString('property_type'),
+    propertyController.createProperty,
   );
 
 module.exports = router;
