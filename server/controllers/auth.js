@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { Users } = require('../models');
+const { Users, packages } = require('../models');
 
 class Auth {
   /**
@@ -47,7 +47,6 @@ class Auth {
       const err = new Error();
       err.message = 'error occured';
       err.details = error;
-      err.statusCode = 500;
       return next(err);
     }
 
@@ -70,6 +69,11 @@ class Auth {
       where: {
         email,
       },
+      include: [{
+        model: packages,
+        as: 'package',
+        attributes: ['name'],
+      }],
     });
 
     if (!result) {
