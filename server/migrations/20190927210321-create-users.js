@@ -30,8 +30,12 @@ module.exports = {
     },
     package_type: {
       type: Sequelize.INTEGER,
-      allowNull: false,
+      allowNull: true,
       unique: false,
+      references: {
+        model: 'packages',
+        key: 'id',
+      },
     },
     password: {
       type: Sequelize.STRING,
