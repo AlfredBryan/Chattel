@@ -1,6 +1,4 @@
 /* eslint-disable camelcase */
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const { decodeToken } = require('../helper/index');
 const { Users } = require('../models');
 

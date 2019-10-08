@@ -34,7 +34,8 @@ module.exports = (sequelize, DataTypes) => {
   {
     timestamps: false,
   });
-  property.associate = function models(models) {
+  // eslint-disable-next-line no-unused-vars
+  property.associate = function models(model) {
     // associations can be defined here
   };
   return property;
