@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 const logger = (err, req, res, next) => {
-  if (!err.statusCode) {
+  if (!err.statusCode || (err.statusCode === 500)) {
     /* eslint-disable-next-line no-console */
     console.error(err.stack, err.details);
     return res.status(500).json({
