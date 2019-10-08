@@ -52,6 +52,7 @@ describe('Authenticate User', () => {
   it('Check if user can add property if property type is empty', (done) => {
     chai.request(server)
       .post(url)
+      .set('token', token)
       .send({
         property_type: '',
         num_apartment: 4,
@@ -69,6 +70,7 @@ describe('Authenticate User', () => {
   it('check if users can add property if number of apartment is empty', (done) => {
     chai.request(server)
       .post(url)
+      .set('token', token)
       .send({
         property_type: 'house',
         num_apartment: '',
@@ -86,6 +88,7 @@ describe('Authenticate User', () => {
   it('check if users can add property if number of bathroom is empty', (done) => {
     chai.request(server)
       .post(url)
+      .set('token', token)
       .send({
         property_type: 'house',
         num_apartment: 4,
@@ -103,6 +106,7 @@ describe('Authenticate User', () => {
   it('check if users can add property if address is empty', (done) => {
     chai.request(server)
       .post(url)
+      .set('token', token)
       .send({
         property_type: 'house',
         num_apartment: 4,
@@ -120,6 +124,7 @@ describe('Authenticate User', () => {
   it('check if users can add property if rentage amount is empty', (done) => {
     chai.request(server)
       .post(url)
+      .set('token', token)
       .send({
         property_type: 'house',
         num_apartment: 4,
@@ -133,5 +138,4 @@ describe('Authenticate User', () => {
         done();
       });
   });
-
 });
