@@ -28,6 +28,7 @@ class Auth {
     // if no user exist in database, make first user to register admin
     const checkAdmin = await Users.findOne({
       where: {},
+      attributes: ['id'],
     });
 
     if (!checkAdmin) isAdmin = true;
