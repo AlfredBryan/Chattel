@@ -50,6 +50,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: false,
+      references: {
+        model: 'packages',
+        key: 'id',
+      },
     },
     password: {
       type: DataTypes.STRING,
@@ -65,7 +69,7 @@ module.exports = (sequelize, DataTypes) => {
 
   // eslint-disable-next-line no-unused-vars
   users.associate = function model(models) {
-    // associations can be defined here
+    users.belongsTo(models.packages, { foreignKey: 'package_type', as: 'package' });
   };
   return users;
 };
