@@ -6,7 +6,7 @@ const propertyController = require('../controllers/property');
 const url = '/api/v1';
 
 // POST REQUESTS
-
+// TODO: validate rentage_amount
 router
   .route(`${url}/create-property`)
   .post(
