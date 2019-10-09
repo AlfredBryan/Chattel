@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
 const { decodeToken } = require('../helper/index');
-const { Users } = require('../models');
+const { Users, property, packages } = require('../models');
 
-class Property {
+class PropertyController {
   /**
    * create property
    * @param {object} req - api request
@@ -21,7 +21,39 @@ class Property {
     const user_id = decodeToken(req).id;
 
     try {
-      await Users.create({
+      // get package user subscribed for.
+      const userPackage = await Users.findOne({
+        where: {
+          id: user_id,
+        },
+        include: [{
+          model: packages,
+          attributes: ['num_property'],
+        }],
+        attributes: ['package_type'],
+      });
+      // I'm unable to access package.num_property directly thats why i strigified and parsed
+      const temp = JSON.stringify(userPackage);
+      const packageLimit = JSON.parse(temp).package.num_property;
+
+
+      // get amount of property user already has registered
+      const propertyCount = await property.count({
+        where: {
+          user_id,
+        },
+      });
+      console.log(propertyCount);
+
+      // check if limit for subscribed package has been reached
+      if (propertyCount >= packageLimit) {
+        const err = new Error();
+        err.message = 'you have reached the limit for your current subscription';
+        err.statusCode = 400;
+        return next(err);
+      }
+
+      await property.create({
         user_id,
         property_type,
         num_apartment,
@@ -44,4 +76,4 @@ class Property {
   }
 }
 
-module.exports = Property;
+module.exports = PropertyController;
