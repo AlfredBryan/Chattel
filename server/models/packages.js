@@ -23,6 +23,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    num_property: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    num_advert: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    }
   }, {
     timestamps: false,
   });
