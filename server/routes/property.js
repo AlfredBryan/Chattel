@@ -15,6 +15,8 @@ router
     validator.checkBodyNotEmpty('property_type', 'num_apartment', 'num_bathroom', 'address', 'rentage_amount'),
     validator.checkBodyValidString('property_type'),
     validator.checkBodyValidInteger('rentage_amount'),
+    validator.checkBodyValidInteger('num_apartment'),
+    validator.checkBodyValidInteger('num_bathroom'),
     propertyController.createProperty,
   );
 
