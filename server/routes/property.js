@@ -35,6 +35,7 @@ router
 .get(
   authenticate.checkTokenExists,
   authenticate.checkTokenValid,
+  validator.checkParamValidInteger('propertyId'),
   propertyController.getSingleProperty,
 );
 
