@@ -5,7 +5,7 @@ const propertyController = require('../controllers/property');
 
 const url = '/api/v1';
 
-// POST REQUESTS
+// REGISTER PROPERTY
 router
   .route(`${url}/create-property`)
   .post(
@@ -17,5 +17,14 @@ router
     validator.checkBodyValidInteger('rentage_amount'),
     propertyController.createProperty,
   );
+
+  // GET ALL REGISTERED PROPERTY A USER HAS
+router
+.route(`${url}/properties`)
+.get(
+  authenticate.checkTokenExists,
+  authenticate.checkTokenValid,
+  propertyController.getProperties,
+);
 
 module.exports = router;
