@@ -86,7 +86,7 @@ class PropertyController {
     const user_id = decodeToken(req).id;
     try {
       // TODO: include count of tenants each property has
-      const properties = await property.find({
+      const properties = await property.findAll({
         where: {
           user_id,
         },
