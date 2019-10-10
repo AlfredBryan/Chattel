@@ -106,6 +106,47 @@ class PropertyController {
       return next(err);
     }
   }
+
+  /**
+   * Get single property user has registered
+   * @param {object} req - api request
+   * @param {object} res - api response
+   * @param {function} next - next middleware function
+   * @return {json}
+   */
+  static async getSingleProperty(req, res, next) {
+    const user_id = decodeToken(req).id;
+    const { propertyId } = req.params;
+    try {
+      // TODO: include count of tenant property has
+      const singleProperty = await property.findOne({
+        where: {
+          id: propertyId,
+          user_id,
+        },
+      });
+
+      if (!singleProperty) {
+        const err = new Error();
+        err.message = 'property not found';
+        err.statusCode = 404;
+        return next(err);
+      }
+
+      return res.status(200).json({
+        message: 'property',
+        result: singleProperty,
+        statusCode: 200,
+      });
+
+    } catch (error) {
+      const err = new Error();
+      err.message = 'error occured';
+      err.details = error;
+      err.statusCode = 500;
+      return next(err);
+    }
+  }
 }
 
 module.exports = PropertyController;
