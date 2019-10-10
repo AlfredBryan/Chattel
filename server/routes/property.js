@@ -27,4 +27,13 @@ router
   propertyController.getProperties,
 );
 
+// GET SINGLE REGISTERED PROPERTY A USER HAS
+router
+.route(`${url}/property/:propertyId`)
+.get(
+  authenticate.checkTokenExists,
+  authenticate.checkTokenValid,
+  propertyController.getSingleProperty,
+);
+
 module.exports = router;
