@@ -138,4 +138,95 @@ describe('Authenticate User', () => {
         done();
       });
   });
+
+  it('check if users can add property if property type is not a valid string', (done) => {
+    chai.request(server)
+      .post(url)
+      .set('token', token)
+      .send({
+        property_type: 'house%&7',
+        num_apartment: 4,
+        num_bathroom: 4,
+        address: 'test',
+        rentage_amount: '60',
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.message.should.be.equal('property_type is not a vaild string');
+        done();
+      });
+  });
+
+  it('check if users can add property if number of apartment is not a valid integer', (done) => {
+    chai.request(server)
+      .post(url)
+      .set('token', token)
+      .send({
+        property_type: 'house',
+        num_apartment: '4test',
+        num_bathroom: 4,
+        address: 'test',
+        rentage_amount: '60',
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.message.should.be.equal('num_apartment is not a vaild integer');
+        done();
+      });
+  });
+
+  it('check if users can add property if number of bathroom is not a valid integer', (done) => {
+    chai.request(server)
+      .post(url)
+      .set('token', token)
+      .send({
+        property_type: 'house',
+        num_apartment: 4,
+        num_bathroom: '4test',
+        address: 'test',
+        rentage_amount: '60',
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.message.should.be.equal('num_bathroom is not a vaild integer');
+        done();
+      });
+  });
+
+  it('check if users can add property if rentage amount is not a valid integer', (done) => {
+    chai.request(server)
+      .post(url)
+      .set('token', token)
+      .send({
+        property_type: 'house',
+        num_apartment: 4,
+        num_bathroom: 4,
+        address: 'test',
+        rentage_amount: '60fchg',
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.message.should.be.equal('rentage_amount is not a vaild integer');
+        done();
+      });
+  });
+
+  it('check if users can successfully add property', (done) => {
+    chai.request(server)
+      .post(url)
+      .set('token', token)
+      .send({
+        property_type: 'house',
+        num_apartment: 4,
+        num_bathroom: 4,
+        address: 'test',
+        rentage_amount: '60',
+      })
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.body.message.should.be.equal('Property created successfully');
+        done();
+      });
+  });
+
 });
