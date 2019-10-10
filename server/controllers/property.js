@@ -60,6 +60,12 @@ class PropertyController {
         address,
         rentage_amount,
       });
+
+      return res.status(201).json({
+        message: 'Property created successfully',
+        statusCode: 201,
+      });
+
     } catch (error) {
       const err = new Error();
       err.message = 'error occured';
@@ -67,11 +73,38 @@ class PropertyController {
       err.statusCode = 500;
       return next(err);
     }
+  }
 
-    return res.status(201).json({
-      message: 'Property created successfully',
-      statusCode: 201,
-    });
+  /**
+   * Get all properties user has registered
+   * @param {object} req - api request
+   * @param {object} res - api response
+   * @param {function} next - next middleware function
+   * @return {json}
+   */
+  static async getProperties(req, res, next) {
+    const user_id = decodeToken(req).id;
+    try {
+      // TODO: include count of tenants each property has
+      const properties = await property.find({
+        where: {
+          user_id,
+        },
+      });
+
+      return res.status(200).json({
+        message: 'Available properties',
+        result: properties,
+        statusCode: 200,
+      });
+
+    } catch (error) {
+      const err = new Error();
+      err.message = 'error occured';
+      err.details = error;
+      err.statusCode = 500;
+      return next(err);
+    }
   }
 }
 
