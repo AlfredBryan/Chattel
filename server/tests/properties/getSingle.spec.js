@@ -121,12 +121,32 @@ describe('get single properties that belongs to user', () => {
       });
   });
 
+  it('check if user can check single property with param that is not an integer', (done) => {
+    chai.request(server)
+      .get(`${url}/undefined`)
+      .set('token', token2)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+
   it('check if user can check another user single property', (done) => {
     chai.request(server)
       .get(`${url}/${propertyID1}`)
       .set('token', token2)
       .end((err, res) => {
         res.should.have.status(404);
+        done();
+      });
+  });
+
+  it('check if user can check single property', (done) => {
+    chai.request(server)
+      .get(`${url}/${propertyID1}`)
+      .set('token', token1)
+      .end((err, res) => {
+        res.should.have.status(200);
         done();
       });
   });
