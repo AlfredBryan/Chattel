@@ -43,7 +43,6 @@ class PropertyController {
           user_id,
         },
       });
-      console.log(propertyCount);
 
       // check if limit for subscribed package has been reached
       if (propertyCount >= packageLimit) {
