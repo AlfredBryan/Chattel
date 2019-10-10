@@ -294,7 +294,7 @@ class validator {
   }
 
   /**
-   *checks if request body keys are valid integers
+   *checks if request parameteres are valid integers
    * @param {object} req - api request
    * @param {object} res - api response
    * @param {function} next - next middleware function
@@ -304,7 +304,7 @@ class validator {
     return (req, _res, next) => {
       /* eslint-disable no-restricted-syntax */
       for (const p of params) {
-        // removes white space from param string, to make string a valid request body key
+        // removes white space from param string, to make string a valid request param key
         // so param string can be displayed as an error message if needed
         // e.g 'first name' ==> firstname
         // req.body[firstname]
@@ -313,7 +313,7 @@ class validator {
         const regex = /\D/;
         if (regex.test(req.params[temp]) === true) {
           const err = new Error();
-          err.message = `${p} is not a vaild integer`;
+          err.message = `parameter ${p} is not a vaild integer`;
           err.statusCode = 400;
           return next(err);
         }
