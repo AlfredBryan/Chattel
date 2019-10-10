@@ -292,5 +292,35 @@ class validator {
 
     return next();
   }
+
+  /**
+   *checks if request body keys are valid integers
+   * @param {object} req - api request
+   * @param {object} res - api response
+   * @param {function} next - next middleware function
+   * @returns {undefined}
+   */
+  static checkParamValidInteger(...params) {
+    return (req, _res, next) => {
+      /* eslint-disable no-restricted-syntax */
+      for (const p of params) {
+        // removes white space from param string, to make string a valid request body key
+        // so param string can be displayed as an error message if needed
+        // e.g 'first name' ==> firstname
+        // req.body[firstname]
+        // e.g Error 'first name is cannot be empty'
+        const temp = p.replace(' ', '');
+        const regex = /\D/;
+        if (regex.test(req.params[temp]) === true) {
+          const err = new Error();
+          err.message = `${p} is not a vaild integer`;
+          err.statusCode = 400;
+          return next(err);
+        }
+      }
+
+      return next();
+    };
+  }
 }
 module.exports = validator;
