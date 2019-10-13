@@ -20,23 +20,23 @@ router
     propertyController.createProperty,
   );
 
-  // GET ALL REGISTERED PROPERTY A USER HAS
+// GET ALL REGISTERED PROPERTY A USER HAS
 router
-.route(`${url}/properties`)
-.get(
-  authenticate.checkTokenExists,
-  authenticate.checkTokenValid,
-  propertyController.getProperties,
-);
+  .route(`${url}/properties`)
+  .get(
+    authenticate.checkTokenExists,
+    authenticate.checkTokenValid,
+    propertyController.getProperties,
+  );
 
 // GET SINGLE REGISTERED PROPERTY A USER HAS
 router
-.route(`${url}/property/:propertyId`)
-.get(
-  authenticate.checkTokenExists,
-  authenticate.checkTokenValid,
-  validator.checkParamValidInteger('propertyId'),
-  propertyController.getSingleProperty,
-);
+  .route(`${url}/property/:propertyId`)
+  .get(
+    authenticate.checkTokenExists,
+    authenticate.checkTokenValid,
+    validator.checkParamValidInteger('propertyId'),
+    propertyController.getSingleProperty,
+  );
 
 module.exports = router;
