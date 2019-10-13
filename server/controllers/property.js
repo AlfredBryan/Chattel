@@ -65,7 +65,6 @@ class PropertyController {
         message: 'Property created successfully',
         statusCode: 201,
       });
-
     } catch (error) {
       const err = new Error();
       err.message = 'error occured';
@@ -97,7 +96,6 @@ class PropertyController {
         result: properties,
         statusCode: 200,
       });
-
     } catch (error) {
       const err = new Error();
       err.message = 'error occured';
@@ -138,7 +136,6 @@ class PropertyController {
         result: singleProperty,
         statusCode: 200,
       });
-
     } catch (error) {
       const err = new Error();
       err.message = 'error occured';
