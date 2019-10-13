@@ -15,10 +15,11 @@ describe('User Login', function test() {
   this.timeout(0);
   before(async () => {
     // create user
-    await dummy.createUser('johnp@gmail.com', 'johnp', '0908765424');
+    await dummy.createUser('johnp1@gmail.com', 'johnp', '090876546824');
   });
 
   after(async () => {
+    // clear table
     await dummy.destroyUsers();
   });
 
@@ -69,7 +70,7 @@ describe('User Login', function test() {
     chai.request(server)
       .post(url)
       .send({
-        email: 'johnp@gmail.com',
+        email: 'johnp1@gmail.com',
         password: 'johnp',
       })
       .end((err, res) => {

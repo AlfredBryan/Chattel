@@ -1,38 +1,26 @@
 /* eslint-disable object-property-newline */
 /* eslint-disable no-console */
 /* eslint-disable no-undef */
-process.env.NODE_ENV = 'test';
 const chai = require('chai');
-// const { expect, done } = require('chai');
 const chaiHttp = require('chai-http');
 const faker = require('faker');
-const bcrypt = require('bcryptjs');
 const server = require('../server');
-const { Users } = require('../models');
+const dummy = require('../dummy');
 
 const url = '/api/v1/register';
-console.log(process.env.NODE_ENV);
 
 chai.use(chaiHttp);
 chai.should();
 
-const hash = bcrypt.hashSync;
-
-const createUser = () => Users.create({
-  email: 'john@gmail.com', password: hash('johnp', 10), firstname: 'John', lastname: 'Doe',
-  gender: 'male', phone_number: '08044679071', package_type: '1', isAdmin: false,
-});
-
-describe('User Registration', () => {
+// eslint-disable-next-line prefer-arrow-callback
+describe('User Registration', function test() {
+  this.timeout(0);
   before(async () => {
-    await createUser();
+    await dummy.createUser('johnp@gmail.com', 'johnp', '0908765424');
   });
 
   after(async () => {
-    await Users.destroy({
-      where: {},
-      truncate: true,
-    });
+    await dummy.destroyUsers();
   });
 
   it('should check if registration is valid without firstname', (done) => {
@@ -462,7 +450,7 @@ describe('User Registration', () => {
         firstname: faker.name.firstName(),
         lastname: faker.name.lastName(),
         username: faker.internet.userName(),
-        email: 'john@gmail.com',
+        email: 'johnp@gmail.com',
         gender: 'male',
         phone_number: '+244556778',
         package_type: '1',
@@ -485,7 +473,7 @@ describe('User Registration', () => {
         username: faker.internet.userName(),
         email: 'test@gmail.com',
         gender: 'male',
-        phone_number: '08044679071',
+        phone_number: '0908765424',
         package_type: '1',
         password: 'test009',
         password2: 'test009',

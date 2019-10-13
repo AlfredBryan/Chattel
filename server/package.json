@@ -30,8 +30,8 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "mocha tests/**/*.js --exit",
-    "test:watch": "mocha tests/**/*.js --watch",
+    "test": "cross-env NODE_ENV=test mocha tests/**/*.js --exit",
+    "test:watch": "cross-env NODE_ENV=test mocha tests/**/*.js --watch",
     "migrate:test": "cross-env NODE_ENV=test sequelize db:migrate",
     "seed:test": "cross-env NODE_ENV=test sequelize db:seed:all",
     "drop:test:db": "cross-env NODE_ENV=test sequelize db:drop",
