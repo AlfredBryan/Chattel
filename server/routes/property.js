@@ -39,12 +39,13 @@ router
     propertyController.getSingleProperty,
   );
 
-// UPDATE PROPERTY REGISTERED TO USER
+// UPDATE PROPERTY
 router
   .route(`${url}/update-property/:propertyId`)
   .put(
     authenticate.checkTokenExists,
     authenticate.checkTokenValid,
+    validator.checkParamValidInteger('propertyId'),
     validator.checkBodyContains('property_type', 'num_apartment', 'num_bathroom', 'address', 'rentage_amount'),
     validator.checkBodyNotEmpty('property_type', 'num_apartment', 'num_bathroom', 'address', 'rentage_amount'),
     validator.checkBodyValidString('property_type'),
@@ -52,6 +53,16 @@ router
     validator.checkBodyValidInteger('num_apartment'),
     validator.checkBodyValidInteger('num_bathroom'),
     propertyController.updateProperty,
+  );
+
+// DELETE PROPERTY
+router
+  .route(`${url}/delete-property/:property:id`)
+  .delete(
+    authenticate.checkTokenExists,
+    authenticate.checkTokenValid,
+    validator.checkParamValidInteger('propertyId'),
+    propertyController.deleteProperty,
   );
 
 module.exports = router;
