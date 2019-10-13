@@ -222,7 +222,6 @@ class PropertyController {
       });
 
       if (!findProperty) {
-        console.log('here');
         const err = new Error();
         err.message = 'property not found';
         err.statusCode = 404;
