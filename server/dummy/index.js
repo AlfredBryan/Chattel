@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 // dummy data tests needs to run should all be defined here
 const bcrypt = require('bcryptjs');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const chai = require('chai');
 const { Users, property } = require('../models');
 const server = require('../server');

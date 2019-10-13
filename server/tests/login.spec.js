@@ -1,36 +1,25 @@
-/* eslint-disable object-property-newline */
-/* eslint-disable no-console */
 /* eslint-disable no-undef */
-process.env.NODE_ENV = 'test';
 const chai = require('chai');
-// const { expect, done } = require('chai');
 const chaiHttp = require('chai-http');
 const faker = require('faker');
-const bcrypt = require('bcryptjs');
 const server = require('../server');
-const { Users } = require('../models');
+const dummy = require('../dummy');
 
 const url = '/api/v1/login';
-const hash = bcrypt.hashSync;
 
 chai.use(chaiHttp);
 chai.should();
 
-const createUser = () => Users.create({
-  email: 'john004@gmail.com', password: hash('johnp', 10), firstname: 'John', lastname: 'Doe',
-  phone_number: '08009856578', package_type: '1', gender: 'male', isAdmin: false,
-});
-
-describe('User Login', () => {
+// eslint-disable-next-line prefer-arrow-callback
+describe('User Login', function test() {
+  this.timeout(0);
   before(async () => {
-    await createUser();
+    // create user
+    await dummy.createUser('johnp@gmail.com', 'johnp', '0908765424');
   });
 
   after(async () => {
-    await Users.destroy({
-      where: {},
-      truncate: true,
-    });
+    await dummy.destroyUsers();
   });
 
   it('should check if login is valid if email is empty', (done) => {
@@ -80,7 +69,7 @@ describe('User Login', () => {
     chai.request(server)
       .post(url)
       .send({
-        email: 'john004@gmail.com',
+        email: 'johnp@gmail.com',
         password: 'johnp',
       })
       .end((err, res) => {

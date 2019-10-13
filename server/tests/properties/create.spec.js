@@ -1,52 +1,29 @@
-/* eslint-disable no-console */
 /* eslint-disable no-undef */
-process.env.NODE_ENV = 'test';
 const chai = require('chai');
-// const { expect, done } = require('chai');
 const chaiHttp = require('chai-http');
-// const faker = require('faker');
-const bcrypt = require('bcryptjs');
-const server = require('../../server');
-const { Users } = require('../../models');
 
 const url = '/api/v1/create-property';
-const hash = bcrypt.hashSync;
+const server = require('../../server');
+const dummy = require('../../dummy');
 
 chai.use(chaiHttp);
 chai.should();
 
 let token;
-const createUser = () => Users.create({
-  // eslint-disable-next-line object-property-newline
-  email: 'john004@gmail.com', password: hash('johnp', 10), firstname: 'John', lastname: 'Doe',
-  // eslint-disable-next-line object-property-newline
-  phone_number: '08009856578', package_type: '1', gender: 'male', isAdmin: false,
-});
 
-// eslint-disable-next-line no-unused-vars
-const loginUser = () => new Promise((resolve, reject) => {
-  chai.request(server)
-    .post('/api/v1/login')
-    .send({
-      email: 'john004@gmail.com',
-      password: 'johnp',
-    })
-    .end((err, res) => {
-      resolve(res.body.token);
-    });
-});
-
-describe('Authenticate User', () => {
+// eslint-disable-next-line prefer-arrow-callback
+describe('create property', function test() {
+  this.timeout(0);
   before(async () => {
-    await createUser();
-    token = await loginUser();
+    // create users
+    await dummy.createUser('johnp@gmail.com', 'johnp', '0908765424');
+    // get token and id of first user
+    const temp = await dummy.loginUser('johnp@gmail.com', 'johnp');
+    token = temp.token;
   });
 
   after(async () => {
-    await Users.destroy({
-      where: {},
-      truncate: true,
-    });
+    await dummy.destroyUsers();
   });
 
   it('Check if user can add property if property type is empty', (done) => {
@@ -228,5 +205,4 @@ describe('Authenticate User', () => {
         done();
       });
   });
-
 });
