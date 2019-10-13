@@ -57,7 +57,7 @@ router
 
 // DELETE PROPERTY
 router
-  .route(`${url}/delete-property/:property:id`)
+  .route(`${url}/delete-property/:propertyId`)
   .delete(
     authenticate.checkTokenExists,
     authenticate.checkTokenValid,

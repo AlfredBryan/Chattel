@@ -165,7 +165,7 @@ class PropertyController {
 
     try {
       // check if property exists and also check if it belongs to the user trying to update it
-      const findProperty = property.findOne({
+      const findProperty = await property.findOne({
         where: {
           id: propertyId,
           user_id,
@@ -222,6 +222,7 @@ class PropertyController {
       });
 
       if (!findProperty) {
+        console.log('here');
         const err = new Error();
         err.message = 'property not found';
         err.statusCode = 404;
