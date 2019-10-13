@@ -25,15 +25,16 @@ class Auth {
     let isAdmin = false;
     password = bcrypt.hashSync(password, 10);
 
-    // if no user exist in database, make first user to register admin
-    const checkAdmin = await Users.findOne({
-      where: {},
-      attributes: ['id'],
-    });
-
-    if (!checkAdmin) isAdmin = true;
-
     try {
+      // if no user exist in database, make first user to register admin
+      const checkAdmin = await Users.findOne({
+        where: {},
+        attributes: ['id'],
+      });
+
+      if (!checkAdmin) isAdmin = true;
+
+
       await Users.create({
         firstname,
         lastname,
