@@ -164,6 +164,7 @@ class PropertyController {
     const user_id = decodeToken(req).id;
 
     try {
+      // check if property exists and also check if it belongs to the user trying to update it
       const findProperty = property.findOne({
         where: {
           id: propertyId,
@@ -178,6 +179,7 @@ class PropertyController {
         return next(err);
       }
 
+      // update property
       await findProperty.update({
         property_type,
         num_apartment,
@@ -189,6 +191,49 @@ class PropertyController {
       return res.status(200).json({
         message: 'Property Updated',
         statusCode: 200,
+      });
+    } catch (error) {
+      const err = new Error();
+      err.message = 'error occured';
+      err.details = error;
+      err.statusCode = 500;
+      return next(err);
+    }
+  }
+
+  /**
+   * delete single property user has registered
+   * @param {object} req - api request
+   * @param {object} res - api response
+   * @param {function} next - next middleware function
+   * @return {json}
+   */
+  static async deleteProperty(req, res, next) {
+    const { propertyId } = req.params;
+    const user_id = decodeToken(req).id;
+
+    try {
+      // check if property exists and also if it belongs to the user trying to delete it
+      const findProperty = await property.findOne({
+        where: {
+          id: propertyId,
+          user_id,
+        },
+      });
+
+      if (!findProperty) {
+        const err = new Error();
+        err.message = 'property not found';
+        err.statusCode = 404;
+        return next(err);
+      }
+
+      // delete property
+      findProperty.destroy();
+
+      return res.status(204).json({
+        message: 'Property Deleted',
+        statusCode: 204,
       });
     } catch (error) {
       const err = new Error();
