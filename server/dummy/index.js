@@ -50,12 +50,10 @@ class dummy {
           email,
           password,
         })
-        .end((err, res) => {
-          resolve({
-            token: res.body.token,
-            id: res.body.result.id,
-          });
-        });
+        .end((err, res) => resolve({
+          token: res.body.token,
+          id: res.body.result.id,
+        }));
     });
   }
 

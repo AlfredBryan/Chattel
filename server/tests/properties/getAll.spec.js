@@ -22,13 +22,13 @@ describe('get properties that belongs to user', function test() {
   this.timeout(0);
   before(async () => {
     // create users
-    await dummy.createUser('johnp@gmail.com', 'johnp', '090876875424');
-    await dummy.createUser('james@gmail.com', 'jamesp', '080086767424');
+    await dummy.createUser('johnp002@gmail.com', 'johnp', '090876875424');
+    await dummy.createUser('james002@gmail.com', 'jamesp', '080086767424');
     // get token and id of first user
-    temp1 = await dummy.loginUser('johnp@gmail.com', 'johnp');
+    temp1 = await dummy.loginUser('johnp002@gmail.com', 'johnp');
     // console.log(temp1);
     // get token and id of second user
-    temp2 = await dummy.loginUser('james@gmail.com', 'jamesp');
+    temp2 = await dummy.loginUser('james002@gmail.com', 'jamesp');
     // create property for first user
     await dummy.createPropertyHouse(temp1.id);
     await dummy.createPropertyShop(temp1.id);
