@@ -15,14 +15,9 @@ class Home extends Component {
     return (
       <React.Fragment>
         <CustomNav />
-        <div id="home_main">
-          <img
-            className="bg_img"
-            src={require("../../images/landingbg.png")}
-            alt="bg_img"
-          />
-          <h1 className="first_t">Find Your Dream Property</h1>
-          <h1 className="second_t">Easily And Comfortably.</h1>
+        <div id="home_main" className="home_main">
+          <h1 className="first_t">Find Your Dream Property
+          Easily And Comfortably.</h1>
           <div className="home_buttons">
             <div className="first_button">
               <h5 className="find_property">FIND PROPERTY</h5>
@@ -84,7 +79,7 @@ class Home extends Component {
               <hr className="second_line" />
               <i className="fa fa-close"></i>
               <hr className="second_line" />
-              #20, 000
+              ₦20, 000
               <hr className="second_line" />
               <div className="get_started">
                 <h5 className="get_started_text">GET STARTED</h5>
@@ -97,7 +92,7 @@ class Home extends Component {
               <hr className="second_line" />
               <i className="fa fa-check"></i> <hr className="second_line" />
               <i className="fa fa-check"></i> <hr className="second_line" />
-              #50, 000
+              ₦50, 000
               <hr className="second_line" />
               <div className="get_started">
                 <h5 className="get_started_text">GET STARTED</h5>
@@ -110,7 +105,7 @@ class Home extends Component {
               <hr className="second_line" />
               <i className="fa fa-check"></i> <hr className="second_line" />
               <i className="fa fa-check"></i> <hr className="second_line" />
-              #120, 000
+              ₦120, 000
               <hr className="second_line" />
               <div className="get_started">
                 <h5 className="get_started_text">GET STARTED</h5>
@@ -148,7 +143,7 @@ class Home extends Component {
               </div>
             </div>
             <div className="center_div">
-              <img src="assets/3.jpeg" />
+              <img src="assets/3.jpeg" alt=" testimonial"/>
               <div className="test_1">
                 <div className="test_img"></div>
                 <p className="test_text">
