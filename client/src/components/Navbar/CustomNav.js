@@ -29,7 +29,7 @@ class CustomNav extends React.Component {
     return (
       <div>
         <Navbar light expand="md" className="navbar_main" fixed="top">
-          <NavbarBrand href="/">Logo</NavbarBrand>
+          <NavbarBrand className="logo_text" href="/">Chattel</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

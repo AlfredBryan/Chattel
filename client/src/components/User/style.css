@@ -14,7 +14,7 @@
 }
 
 .register_header {
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 30px;
@@ -41,7 +41,7 @@
     border: 2px solid #FFFFFF;
     box-sizing: border-box;
     border-radius: 13px;
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 25px;
@@ -51,10 +51,10 @@
 }
 
 .register_text {
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 300;
-    font-size: 20px;
+    font-size: 12px;
     line-height: 23px;
     color: #333333;
     padding: 0.5em
