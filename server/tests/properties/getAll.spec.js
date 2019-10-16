@@ -19,16 +19,16 @@ let temp2;
 
 // eslint-disable-next-line prefer-arrow-callback
 describe('get properties that belongs to user', function test() {
-  this.timeout(0);
+  // this.timeout(0);
   before(async () => {
-    // create users
+    // create first user, and get token and id of first user
     await dummy.createUser('johnp002@gmail.com', 'johnp', '090876875424');
-    await dummy.createUser('james002@gmail.com', 'jamesp', '080086767424');
-    // get token and id of first user
     temp1 = await dummy.loginUser('johnp002@gmail.com', 'johnp');
-    // console.log(temp1);
-    // get token and id of second user
-    temp2 = await dummy.loginUser('james002@gmail.com', 'jamesp');
+
+    // create second user, and get token and id of second user
+    await dummy.createUser('james222@gmail.com', 'jamesp', '0800867674240');
+    temp2 = await dummy.loginUser('james222@gmail.com', 'jamesp');
+
     // create property for first user
     await dummy.createPropertyHouse(temp1.id);
     await dummy.createPropertyShop(temp1.id);
