@@ -25,7 +25,7 @@ class dummy {
    * create property with property_type house, for registered user
    */
   static createPropertyHouse(user_id) {
-    property.create({
+    return property.create({
       user_id, property_type: 'house', num_apartment: 4, num_bathroom: 4, address: 'test', rentage_amount: '60',
     });
   }
@@ -34,7 +34,7 @@ class dummy {
   * create property with property_type shop, for registered user
   */
   static createPropertyShop(user_id) {
-    property.create({
+    return property.create({
       user_id, property_type: 'shop', num_apartment: 4, num_bathroom: 4, address: 'test', rentage_amount: '60',
     });
   }
@@ -77,7 +77,7 @@ class dummy {
    * clear user table
    */
   static destroyUsers() {
-    Users.destroy({
+    return Users.destroy({
       where: {},
       truncate: true,
     });
@@ -87,7 +87,7 @@ class dummy {
    * clear property table
    */
   static destroyProperties() {
-    property.destroy({
+    return property.destroy({
       where: {},
       truncate: true,
     });
