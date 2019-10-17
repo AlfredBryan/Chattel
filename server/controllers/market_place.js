@@ -167,6 +167,49 @@ class MarketController {
       return next(err);
     }
   }
+
+  /**
+   * delete single advert user has registered
+   * @param {object} req - api request
+   * @param {object} res - api response
+   * @param {function} next - next middleware function
+   * @return {json}
+   */
+  static async deleteAdvert(req, res, next) {
+    const { advertId } = req.params;
+    const user_id = decodeToken(req).id;
+
+    try {
+      // check if property exists and also if it belongs to the user trying to delete it
+      const findAdvert = await market.findOne({
+        where: {
+          id: advertId,
+          user_id,
+        },
+      });
+
+      if (!findAdvert) {
+        const err = new Error();
+        err.message = 'property not found';
+        err.statusCode = 404;
+        return next(err);
+      }
+
+      // delete advert
+      findAdvert.destroy();
+
+      return res.status(204).json({
+        message: 'Advert Deleted',
+        statusCode: 204,
+      });
+    } catch (error) {
+      const err = new Error();
+      err.message = 'error occured';
+      err.details = error;
+      err.statusCode = 500;
+      return next(err);
+    }
+  }
 }
 
 module.exports = PropertyController;
