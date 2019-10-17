@@ -236,6 +236,35 @@ class MarketController {
     }
   }
 
+   /**
+   * Get single advert for visitors
+   * @param {object} req - api request
+   * @param {object} res - api response
+   * @param {function} next - next middleware function
+   * @return {json}
+   */
+  static async getSingleAdvert(req, res, next) {
+    const { advertId } = req.params;
+    try {
+      const advert = await market.findOne({
+        where: {
+          id: advertId,
+        },
+      });
+
+      return res.status(200).json({
+        message: 'Advert',
+        result: advert,
+        statusCode: 200,
+      });
+    } catch (error) {
+      const err = new Error();
+      err.message = 'error occured';
+      err.details = error;
+      err.statusCode = 500;
+      return next(err);
+    }
+  }
 }
 
 module.exports = PropertyController;
