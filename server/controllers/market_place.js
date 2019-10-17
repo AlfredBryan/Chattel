@@ -300,4 +300,4 @@ class MarketController {
   }
 }
 
-module.exports = PropertyController;
+module.exports = MarketController;
