@@ -107,6 +107,66 @@ class MarketController {
       return next(err);
     }
   }
+
+  /**
+   * update single advert user has registered
+   * @param {object} req - api request
+   * @param {object} res - api response
+   * @param {function} next - next middleware function
+   * @return {json}
+   */
+  static async updateAdvert(req, res, next) {
+    const {
+      property_type,
+      location,
+      price,
+      num_rooms,
+      num_palour,
+      num_bathroom,
+      images
+    } = req.body;
+    const { advertId } = req.params;
+    const user_id = decodeToken(req).id;
+
+    try {
+      // get advert
+      const findAdvert = await market.findOne({
+        where: {
+          id: advertId,
+          user_id,
+        },
+      });
+
+      if (!findAdvert) {
+        const err = new Error();
+        err.message = 'advert not found';
+        err.statusCode = 404;
+        return next(err);
+      }
+
+      // update advert
+      await findAdvert.update({
+        property_type,
+        location,
+        price,
+        num_rooms,
+        num_palour,
+        num_bathroom,
+        images
+      });
+
+      return res.status(200).json({
+        message: 'Advert Updated',
+        statusCode: 200,
+      });
+    } catch (error) {
+      const err = new Error();
+      err.message = 'error occured';
+      err.details = error;
+      err.statusCode = 500;
+      return next(err);
+    }
+  }
 }
 
 module.exports = PropertyController;
