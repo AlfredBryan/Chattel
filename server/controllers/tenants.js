@@ -143,6 +143,84 @@ class tenantController {
       return next(err);
     }
   }
+
+  /**
+   * update tenant that user has registered under a property
+   * @param {object} req - api request
+   * @param {object} res - api response
+   * @param {function} next - next middleware function
+   * @return {json}
+   */
+  static async updateTenant(req, res, next) {
+    const {
+      fullname,
+      email,
+      phone_number,
+      address,
+      last_payment_date,
+      payment_expiry_date,
+      num_years_paid_for,
+      propertyId,
+    } = req.body;
+    const { tenantId } = req.params;
+    const user_id = decodeToken(req).id;
+
+    try {
+      // check if property exists and also check if it belongs to user 
+      const findProperty = await property.findOne({
+        where: {
+          id: propertyId,
+          user_id,
+        },
+      });
+
+      // if property does not exist return 404 error
+      if (!findProperty) {
+        const err = new Error();
+        err.message = 'property not found';
+        err.statusCode = 404;
+        return next(err);
+      }
+
+      // check if tenant exists, and if it belongs to property
+      const findTenant = await tenants.findOne({
+        where: {
+          id: tenantId,
+          property_id: propertyId,
+        },
+      });
+
+      // if tenant does not exist return 404 error
+      if (!findTenant) {
+        const err = new Error();
+        err.message = 'property not found';
+        err.statusCode = 404;
+        return next(err);
+      }
+
+      // update tenant
+      await findTenant.update({
+        fullname,
+        email,
+        phone_number,
+        address,
+        last_payment_date,
+        payment_expiry_date,
+        num_years_paid_for,
+      });
+
+      return res.status(200).json({
+        message: 'Tenant Updated',
+        statusCode: 200,
+      });
+    } catch (error) {
+      const err = new Error();
+      err.message = 'error occured';
+      err.details = error;
+      err.statusCode = 500;
+      return next(err);
+    }
+  }
 }
 
 module.exports = tenantController;
