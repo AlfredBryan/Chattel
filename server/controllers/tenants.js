@@ -221,6 +221,64 @@ class tenantController {
       return next(err);
     }
   }
+
+  /**
+   * delete tenant that user has registered under a property
+   * @param {object} req - api request
+   * @param {object} res - api response
+   * @param {function} next - next middleware function
+   * @return {json}
+   */
+  static async deleteTenant(req, res, next) {
+    const { propertyId, tenantId } = req.params;
+    const user_id = decodeToken(req).id;
+
+    try {
+      // check if property belongs to user
+      const findProperty = await property.findOne({
+        where: {
+          id: propertyId,
+          user_id,
+        },
+      });
+
+      if (!findProperty) {
+        const err = new Error();
+        err.message = 'property not found';
+        err.statusCode = 404;
+        return next(err);
+      }
+
+      // check if property belongs to user
+      const findTenant = await tenants.findOne({
+        where: {
+          id: tenantId,
+          property_id: propertyId
+        },
+      });
+
+      if (!findTenant) {
+        const err = new Error();
+        err.message = 'tenant not found';
+        err.statusCode = 404;
+        return next(err);
+      }
+
+      // delete tenant
+      findTenant.destroy();
+
+      return res.status(204).json({
+        message: 'Tenant Deleted',
+        statusCode: 204,
+      });
+    } catch (error) {
+      const err = new Error();
+      err.message = 'error occured';
+      err.details = error;
+      err.statusCode = 500;
+      return next(err);
+    }
+  }
 }
 
 module.exports = tenantController;
