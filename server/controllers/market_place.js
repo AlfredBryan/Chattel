@@ -108,6 +108,39 @@ class MarketController {
     }
   }
 
+
+  /**
+   * Get single adverts user has registered
+   * @param {object} req - api request
+   * @param {object} res - api response
+   * @param {function} next - next middleware function
+   * @return {json}
+   */
+  static async getSingleUserAdvert(req, res, next) {
+    const user_id = decodeToken(req).id;
+    const { advertId } = req.params;
+    try {
+      const advert = await market.findOne({
+        where: {
+          user_id,
+          id: advertId,
+        },
+      });
+
+      return res.status(200).json({
+        message: 'Single Advert',
+        result: advert,
+        statusCode: 200,
+      });
+    } catch (error) {
+      const err = new Error();
+      err.message = 'error occured';
+      err.details = error;
+      err.statusCode = 500;
+      return next(err);
+    }
+  }
+
   /**
    * update single advert user has registered
    * @param {object} req - api request
