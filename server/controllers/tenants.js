@@ -10,7 +10,7 @@ class tenantController {
    * @param {function} next - next middleware function
    * @return {json}
    */
-  static async createProperty(req, res, next) {
+  static async createTenant(req, res, next) {
     const {
       fullname,
       email,
@@ -58,7 +58,7 @@ class tenantController {
 
 
       // get amount of property user already has registered
-      const tenantCount = await tenant.count({
+      const tenantCount = await tenants.count({
         where: {
           property_id: propertyId,
         },
@@ -72,7 +72,7 @@ class tenantController {
         return next(err);
       }
 
-      await tenant.create({
+      await tenants.create({
         fullname,
         email,
         phone_number,
@@ -86,6 +86,54 @@ class tenantController {
       return res.status(201).json({
         message: 'Tenant created successfully',
         statusCode: 201,
+      });
+    } catch (error) {
+      const err = new Error();
+      err.message = 'error occured';
+      err.details = error;
+      err.statusCode = 500;
+      return next(err);
+    }
+  }
+
+  /**
+   * Get all tenants a user has registered under a property
+   * @param {object} req - api request
+   * @param {object} res - api response
+   * @param {function} next - next middleware function
+   * @return {json}
+   */
+  static async getTenants(req, res, next) {
+    const user_id = decodeToken(req).id;
+    const { propertyId } = req.params;
+    try {
+
+      // check if property actually exists, and if it belongs to the user
+      const checkProperty = await property.findOne({
+        where: {
+          user_id,
+          id: propertyId,
+        },
+      });
+
+      // if property doesnt exist return 404 error
+      if (!checkProperty) {
+        const err = new Error();
+        err.message = 'property does not exist';
+        err.statusCode = 404;
+        return next(err);
+      }
+
+      const allTenant = await tenants.findAll({
+        where: {
+          property_id: propertyId,
+        },
+      });
+
+      return res.status(200).json({
+        message: 'Available tenants',
+        result: allTenant,
+        statusCode: 200,
       });
     } catch (error) {
       const err = new Error();
