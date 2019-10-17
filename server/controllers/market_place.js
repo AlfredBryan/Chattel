@@ -210,6 +210,32 @@ class MarketController {
       return next(err);
     }
   }
+
+   /**
+   * Get all adverts for vistors
+   * @param {object} req - api request
+   * @param {object} res - api response
+   * @param {function} next - next middleware function
+   * @return {json}
+   */
+  static async getAdverts(req, res, next) {
+    try {
+      const adverts = await market.findAll({});
+
+      return res.status(200).json({
+        message: 'Available adverts',
+        result: adverts,
+        statusCode: 200,
+      });
+    } catch (error) {
+      const err = new Error();
+      err.message = 'error occured';
+      err.details = error;
+      err.statusCode = 500;
+      return next(err);
+    }
+  }
+
 }
 
 module.exports = PropertyController;
