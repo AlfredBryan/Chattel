@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const tenants = sequelize.define('market_place', {
+  const market = sequelize.define('market_place', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -46,15 +46,15 @@ module.exports = (sequelize, DataTypes) => {
       unique: false,
     },
     images: {
-      type: DataTypes.ARRAY,
+      type: DataTypes.ARRAY(DataTypes.TEXT),
       allowNull: false,
     },
   }, {
     timestamps: false,
   });
   // eslint-disable-next-line no-unused-vars
-  tenants.associate = function models(model) {
-    tenants.belongsTo(models.Users, { foreignKey: 'user_id'});
+  market.associate = function models(model) {
+    market.belongsTo(model.Users, { foreignKey: 'user_id' });
   };
-  return tenants;
+  return market;
 };

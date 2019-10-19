@@ -79,7 +79,7 @@ class dummy {
   static destroyUsers() {
     return Users.destroy({
       where: {},
-      truncate: true,
+      cascade: true,
     });
   }
 
@@ -89,7 +89,7 @@ class dummy {
   static destroyProperties() {
     return property.destroy({
       where: {},
-      truncate: true,
+      cascade: true,
     });
   }
 }

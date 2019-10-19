@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
   });
   // eslint-disable-next-line no-unused-vars
   tenants.associate = function models(model) {
-    tenants.belongsTo(models.property, { foreignKey: 'property_id'});
+    tenants.belongsTo(model.property, { foreignKey: 'property_id' });
   };
   return tenants;
 };

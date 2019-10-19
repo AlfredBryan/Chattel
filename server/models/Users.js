@@ -69,7 +69,7 @@ module.exports = (sequelize, DataTypes) => {
 
   // eslint-disable-next-line no-unused-vars
   users.associate = function model(models) {
-    users.belongsTo(models.packages, { foreignKey: 'package_type'});
+    users.belongsTo(models.packages, { foreignKey: 'package_type' });
   };
   return users;
 };
