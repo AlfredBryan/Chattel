@@ -12,8 +12,8 @@ const url = '/api/v1';
 router
   .route(`${url}/register`)
   .post(
-    validator.checkBodyContains('first name', 'last name', 'phone_number', 'package_type', 'email', 'gender', 'password', 'password2'),
-    validator.checkBodyNotEmpty('first name', 'last name', 'phone_number', 'package_type', 'email', 'gender', 'password'),
+    validator.checkBodyContains('first name', 'last name', 'phone_number', 'package_id', 'email', 'gender', 'password', 'password2'),
+    validator.checkBodyNotEmpty('first name', 'last name', 'phone_number', 'package_id', 'email', 'gender', 'password'),
     validator.checkBodyValidString('first name', 'last name', 'gender'),
     validator.checkBodyMinValue(3, 'first name', 'last name'),
     validator.checkBodyMinValue(4, 'gender'),

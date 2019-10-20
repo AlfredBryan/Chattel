@@ -19,7 +19,7 @@ class Auth {
       // eslint-disable-next-line camelcase
       phone_number,
       // eslint-disable-next-line camelcase
-      package_type,
+      package_id,
     } = req.body;
     let { password } = req.body;
     let isAdmin = false;
@@ -42,7 +42,7 @@ class Auth {
         isAdmin,
         gender,
         phone_number,
-        package_type,
+        package_id,
         password,
       });
     } catch (error) {
