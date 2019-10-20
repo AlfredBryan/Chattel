@@ -45,6 +45,20 @@ module.exports = {
       type: Sequelize.BOOLEAN,
       allowNull: false,
     },
+    last_sub_date: {
+      type: Sequelize.DATE,
+      allowNull: true,
+    },
+    sub_expiry_date: {
+      type: Sequelize.DATE,
+      allowNull: true,
+    },
+    reg_date: {
+      type: Sequelize.DATE,
+      allowNull: false,
+      default: Date.now(),
+    },
+
   }),
   // eslint-disable-next-line no-unused-vars
   down: (queryInterface, _Sequelize) => queryInterface.dropTable('Users'),
