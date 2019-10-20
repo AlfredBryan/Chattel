@@ -256,6 +256,9 @@ class validator {
       where: {
         email,
       },
+      attributes: {
+        exclude: ['packageId'],
+      },
     });
 
     if (result) {

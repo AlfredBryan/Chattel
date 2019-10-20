@@ -7,6 +7,7 @@ const authController = require('../controllers/auth');
 const url = '/api/v1';
 
 // POST REQUESTS
+// TODO: validate package type
 
 router
   .route(`${url}/register`)

@@ -28,7 +28,7 @@ module.exports = {
       allowNull: false,
       unique: true,
     },
-    package_type: {
+    package_id: {
       type: Sequelize.INTEGER,
       allowNull: true,
       unique: false,

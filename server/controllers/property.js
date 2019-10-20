@@ -30,7 +30,7 @@ class PropertyController {
           model: packages,
           attributes: ['num_property'],
         }],
-        attributes: ['package_type'],
+        attributes: ['package_id'],
       });
       // I'm unable to access package.num_property directly thats why i strigified and parsed
       const temp = JSON.stringify(userPackage);

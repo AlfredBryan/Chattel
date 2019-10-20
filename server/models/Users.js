@@ -46,9 +46,9 @@ module.exports = (sequelize, DataTypes) => {
       // },
       },
     },
-    package_type: {
+    package_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       unique: false,
       references: {
         model: 'packages',
@@ -65,11 +65,12 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     timestamps: false,
+    underscored: true,
   });
 
   // eslint-disable-next-line no-unused-vars
   users.associate = function model(models) {
-    users.belongsTo(models.packages, { foreignKey: 'package_type' });
+    users.belongsTo(models.packages, { foreignKey: 'package_id', targetKey: 'id' });
   };
   return users;
 };

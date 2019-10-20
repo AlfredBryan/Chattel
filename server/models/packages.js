@@ -1,4 +1,3 @@
-'use strict';
 module.exports = (sequelize, DataTypes) => {
   const packages = sequelize.define('packages', {
     id: {
@@ -30,7 +29,11 @@ module.exports = (sequelize, DataTypes) => {
     num_advert: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    }
+    },
+    num_tenant: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   }, {
     timestamps: false,
   });

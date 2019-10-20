@@ -26,10 +26,14 @@ module.exports = {
       type: Sequelize.INTEGER,
       allowNull: false,
     },
+    num_tenant: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
     num_advert: {
       type: Sequelize.INTEGER,
       allowNull: false,
-    }
+    },
   }),
   // eslint-disable-next-line no-unused-vars
   down: (queryInterface, Sequelize) => queryInterface.dropTable('packages'),

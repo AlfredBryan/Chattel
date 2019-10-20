@@ -17,7 +17,7 @@ class dummy {
       // eslint-disable-next-line object-property-newline
       email, password: hash(password, 10), firstname: 'John', lastname: 'Doe',
       // eslint-disable-next-line object-property-newline
-      phone_number, package_type: '1', gender: 'male', isAdmin: false,
+      phone_number, package_id: '1', gender: 'male', isAdmin: false,
     });
   }
 

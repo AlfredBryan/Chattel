@@ -74,7 +74,7 @@ class Auth {
       include: [{
         model: packages,
         as: 'package',
-        attributes: ['name'],
+        attributes: ['type'],
       }],
     });
 
