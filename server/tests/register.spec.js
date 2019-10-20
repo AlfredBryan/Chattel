@@ -32,7 +32,7 @@ describe('User Registration', function test() {
         email: '',
         gender: '',
         phone_number: '',
-        package_type: '',
+        package_id: '',
         password: '',
         password2: '',
       })
@@ -51,7 +51,7 @@ describe('User Registration', function test() {
         email: '',
         gender: '',
         phone_number: '',
-        package_type: '',
+        package_id: '',
         password: '',
         password2: '',
       })
@@ -70,7 +70,7 @@ describe('User Registration', function test() {
         lastname: '',
         gender: '',
         phone_number: '',
-        package_type: '',
+        package_id: '',
         password: '',
         password2: '',
       })
@@ -89,7 +89,7 @@ describe('User Registration', function test() {
         lastname: '',
         email: '',
         phone_number: '',
-        package_type: '',
+        package_id: '',
         password: '',
         password2: '',
       })
@@ -108,7 +108,7 @@ describe('User Registration', function test() {
         lastname: '',
         email: '',
         gender: '',
-        package_type: '',
+        package_id: '',
         password: '',
         password2: '',
       })
@@ -119,7 +119,7 @@ describe('User Registration', function test() {
       });
   });
 
-  it('should check if registration is valid without package_type', (done) => {
+  it('should check if registration is valid without package_id', (done) => {
     chai.request(server)
       .post(url)
       .send({
@@ -133,7 +133,7 @@ describe('User Registration', function test() {
       })
       .end((err, res) => {
         res.should.have.status(400);
-        res.body.message.should.be.equal('package_type is required');
+        res.body.message.should.be.equal('package_id is required');
         done();
       });
   });
@@ -147,7 +147,7 @@ describe('User Registration', function test() {
         email: '',
         gender: '',
         phone_number: '',
-        package_type: '',
+        package_id: '',
         password2: '',
       })
       .end((err, res) => {
@@ -166,7 +166,7 @@ describe('User Registration', function test() {
         lastname: 'test',
         email: 'test',
         phone_number: '24567890',
-        package_type: '1',
+        package_id: '1',
         gender: 'male',
         password: 'wertyhjkl',
         password2: 'wertyuio',
@@ -186,7 +186,7 @@ describe('User Registration', function test() {
         lastname: '',
         email: 'dgfchvjk',
         phone_number: '124567890',
-        package_type: '1',
+        package_id: '1',
         gender: 'male',
         password: 'sfdghjkl',
         password2: 'etryuio',
@@ -206,7 +206,7 @@ describe('User Registration', function test() {
         lastname: 'fhgjkujk',
         email: '',
         phone_number: '+244908465785',
-        package_type: '1',
+        package_id: '1',
         gender: 'male',
         password: 'fghjkl',
         password2: 'dghft',
@@ -226,7 +226,7 @@ describe('User Registration', function test() {
         lastname: 'rftghyjuk',
         email: 'gfhjklkjh',
         phone_number: '+244456789049',
-        package_type: '1',
+        package_id: '1',
         gender: '',
         password: 'fghjk',
         password2: 'gfhjk',
@@ -245,7 +245,7 @@ describe('User Registration', function test() {
         firstname: 'fdghjkl',
         lastname: 'dgfhjkl;',
         email: 'fhvgjkl;',
-        package_type: '1',
+        package_id: '1',
         phone_number: '',
         gender: 'male',
         password: 'fhgjk',
@@ -258,7 +258,7 @@ describe('User Registration', function test() {
       });
   });
 
-  it('should check if registration is valid if package_type is empty', (done) => {
+  it('should check if registration is valid if package_id is empty', (done) => {
     chai.request(server)
       .post(url)
       .send({
@@ -266,14 +266,14 @@ describe('User Registration', function test() {
         lastname: 'dfghjklhkj',
         email: 'fghjkl;j',
         phone_number: '+2449072182162',
-        package_type: '',
+        package_id: '',
         gender: 'male',
         password: 'fghjkl',
         password2: 'fdghjk',
       })
       .end((err, res) => {
         res.should.have.status(400);
-        res.body.message.should.be.equal('package_type cannot be empty');
+        res.body.message.should.be.equal('package_id cannot be empty');
         done();
       });
   });
@@ -287,7 +287,7 @@ describe('User Registration', function test() {
         email: 'dgfhjkl;',
         gender: 'male',
         phone_number: '+244556778',
-        package_type: '1',
+        package_id: '1',
         password: '',
         password2: 'fhgjkl',
       })
@@ -307,7 +307,7 @@ describe('User Registration', function test() {
         email: 'shdkffla',
         gender: 'male',
         phone_number: '+244556778',
-        package_type: '1',
+        package_id: '1',
         password: 'jahged',
         password2: 'hkdvjd',
       })
@@ -328,7 +328,7 @@ describe('User Registration', function test() {
         email: 'savghjk',
         gender: 'male',
         phone_number: '+244556778',
-        package_type: '1',
+        package_id: '1',
         password: 'sagfhj',
         password2: 'gfhjk',
       })
@@ -348,7 +348,7 @@ describe('User Registration', function test() {
         email: 'sammyjay@yahoo.com',
         gender: 'mal',
         phone_number: '+244556778',
-        package_type: '1',
+        package_id: '1',
         password: 'sahj',
         password2: 'gjfdhk',
       })
@@ -369,7 +369,7 @@ describe('User Registration', function test() {
         email: faker.internet.email(),
         gender: 'male',
         phone_number: '+244556778',
-        package_type: '1',
+        package_id: '1',
         password: 'fhh',
         password2: 'fhh',
       })
@@ -390,7 +390,7 @@ describe('User Registration', function test() {
         email: faker.internet.email(),
         gender: 'fmale',
         phone_number: '+244556778',
-        package_type: '1',
+        package_id: '1',
         password: 'jmnxjfc',
         password2: 'jhdkdd',
       })
@@ -411,7 +411,7 @@ describe('User Registration', function test() {
         email: 'hdjff',
         gender: 'male',
         phone_number: '+244556778',
-        package_type: '1',
+        package_id: '1',
         password: 'hdcjkh',
         password2: 'gjdhfd',
       })
@@ -432,7 +432,7 @@ describe('User Registration', function test() {
         email: faker.internet.email(),
         gender: 'male',
         phone_number: '+244556778',
-        package_type: '1',
+        package_id: '1',
         password: faker.internet.password(),
         password2: faker.internet.password(),
       })
@@ -453,7 +453,7 @@ describe('User Registration', function test() {
         email: 'johnp@gmail.com',
         gender: 'male',
         phone_number: '+244556778',
-        package_type: '1',
+        package_id: '1',
         password: 'test009',
         password2: 'test009',
       })
@@ -474,7 +474,7 @@ describe('User Registration', function test() {
         email: 'test@gmail.com',
         gender: 'male',
         phone_number: '0908765424',
-        package_type: '1',
+        package_id: '1',
         password: 'test009',
         password2: 'test009',
       })
@@ -495,7 +495,7 @@ describe('User Registration', function test() {
         email: 'test567@gmail.com',
         gender: 'male',
         phone_number: '+244556778',
-        package_type: '1',
+        package_id: '1',
         password: 'test009',
         password2: 'test009',
       })
