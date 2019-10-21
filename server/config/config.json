@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "salvonic9090",
+    "database": "chattel",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "logging": false
+  },
+  "test": {
+    "username": "postgres",
+    "password": "salvonic9090",
+    "database": "chatteltest",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "logging": false,
+    "env": "test"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "chattel",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
