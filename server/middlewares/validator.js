@@ -252,6 +252,7 @@ class validator {
    */
   static async checkEmailExists(req, res, next) {
     const { email } = req.body;
+    try{ 
     const result = await Users.findOne({
       where: {
         email,
@@ -267,6 +268,12 @@ class validator {
       err.statusCode = 400;
       return next(err);
     }
+  } catch(error) {
+    const err = new Error();
+    err.message = 'internal server erro';
+    err.details = error;
+    return next(err);
+  }
 
     return next();
   }

@@ -67,42 +67,49 @@ class Auth {
    */
   static async loginUser(req, res, next) {
     const { email, password } = req.body;
-    const result = await Users.findOne({
-      where: {
-        email,
+    try {
+      const result = await Users.findOne({
+        where: {
+          email,
+        },
+        include: [{
+          model: packages,
+          as: 'package',
+          attributes: ['type'],
+        }],
+      });
+
+      if (!result) {
+        const err = new Error();
+        err.message = 'invalid email or password';
+        err.statusCode = 401;
+        return next(err);
+      }
+
+      const compare = await bcrypt.compare(password, result.password);
+
+      if (!compare) {
+        const err = new Error();
+        err.message = 'invalid email or password';
+        err.statusCode = 401;
+        return next(err);
+      }
+
+      // sign user token
+      const token = jwt.sign({
+        id: result.id,
+        isAdmin: result.isAdmin,
       },
-      include: [{
-        model: packages,
-        as: 'package',
-        attributes: ['type'],
-      }],
-    });
+        process.env.SECRET_KEY, { expiresIn: '30d' });
 
-    if (!result) {
+      // unset user password
+      result.password = undefined;
+    } catch (error) {
       const err = new Error();
-      err.message = 'invalid email or password';
-      err.statusCode = 401;
+      err.message = 'internal server erro';
+      err.details = error;
       return next(err);
     }
-
-    const compare = await bcrypt.compare(password, result.password);
-
-    if (!compare) {
-      const err = new Error();
-      err.message = 'invalid email or password';
-      err.statusCode = 401;
-      return next(err);
-    }
-
-    // sign user token
-    const token = jwt.sign({
-      id: result.id,
-      isAdmin: result.isAdmin,
-    },
-    process.env.SECRET_KEY, { expiresIn: '30d' });
-
-    // unset user password
-    result.password = undefined;
 
     return res.status(200).json({
       message: 'logged in',
