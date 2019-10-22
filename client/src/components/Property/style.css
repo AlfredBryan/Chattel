@@ -1,0 +1,161 @@
+.center-div {
+    text-align: center;
+}
+
+.property {
+    display: inline-block;
+    width: 1087px;
+    height: 404px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 4em;
+}
+
+.property_main h1 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 54px;
+    line-height: 63px;
+    letter-spacing: 0.05em;
+    color: #662892;
+    margin-top: 3em;
+    text-align: center;
+}
+
+.property_content {
+    display: flex;
+}
+
+
+.property_img {
+    position: relative;
+    width: 517px;
+    height: 404px;
+    background: url(../../images/property.png);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.property_price {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    width: 229px;
+    height: 53px;
+    background: #FFFFFF;
+    border: 1px solid #662892;
+}
+
+.property_price h3 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    letter-spacing: 0.05em;
+    color: #662892;
+    padding: 0.2em;
+}
+
+.property_text {
+    padding-left: 4em;
+}
+
+.property_text h3 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 35px;
+    letter-spacing: 0.05em;
+    color: #662892;
+    margin-top: 0.5em;
+    text-align: left;
+}
+
+.property_text p {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: 0.05em;
+    color: #726E6E;
+    text-align: left;
+    margin-top: 1em;
+}
+
+.property_text p>i {
+    padding-right: 0.5em;
+    font-size: 1.3em;
+}
+
+.property_tabs_one {
+    display: flex;
+}
+
+.property_tabs_two {
+    display: flex;
+    margin-top: 1em;
+}
+
+.tab_one {
+    width: 131px;
+    height: 41px;
+    background: rgba(255, 153, 33, 0.68);
+}
+
+.tab_two {
+    width: 131px;
+    height: 41px;
+    background: rgba(255, 153, 33, 0.68);
+    margin-left: 1.5em;
+}
+
+.tab_three {
+    width: 131px;
+    height: 41px;
+    background: rgba(255, 153, 33, 0.68);
+    margin-left: 1.5em;
+}
+
+.tab_one h5 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.05em;
+    color: #000000;
+    padding-top: 0.6em;
+}
+
+.tab_two h5 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.05em;
+    color: #000000;
+    padding-top: 0.6em;
+}
+
+.tab_three h5 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.05em;
+    color: #000000;
+    padding-top: 0.6em;
+}
+
+@media screen and (max-width: 600px) {
+    .property_main h1 {
+        margin-left: 6em;
+        font-size: 50px;
+    }
+}
