@@ -53,8 +53,8 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
   });
   // eslint-disable-next-line no-unused-vars
-  market.associate = function models(model) {
-    market.belongsTo(model.Users, { foreignKey: 'user_id' });
+  market.associate = function model(models) {
+    market.belongsTo(models.User, { foreignKey: 'user_id' });
   };
   return market;
 };

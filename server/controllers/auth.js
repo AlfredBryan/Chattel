@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { Users, packages } = require('../models');
+const { User, packages } = require('../models');
 
 class Auth {
   /**
@@ -27,7 +27,7 @@ class Auth {
 
     try {
       // if no user exist in database, make first user to register admin
-      const checkAdmin = await Users.findOne({
+      const checkAdmin = await User.findOne({
         where: {},
         attributes: ['id'],
       });
@@ -35,7 +35,7 @@ class Auth {
       if (!checkAdmin) isAdmin = true;
 
 
-      await Users.create({
+      await User.create({
         firstname,
         lastname,
         email,
@@ -68,7 +68,7 @@ class Auth {
   static async loginUser(req, res, next) {
     const { email, password } = req.body;
     try {
-      const result = await Users.findOne({
+      const result = await User.findOne({
         where: {
           email,
         },
@@ -104,6 +104,13 @@ class Auth {
 
       // unset user password
       result.password = undefined;
+
+      return res.status(200).json({
+        message: 'logged in',
+        statusCode: 200,
+        token,
+        result,
+      });
     } catch (error) {
       const err = new Error();
       err.message = 'internal server erro';
@@ -111,12 +118,6 @@ class Auth {
       return next(err);
     }
 
-    return res.status(200).json({
-      message: 'logged in',
-      statusCode: 200,
-      token,
-      result,
-    });
   }
 }
 
