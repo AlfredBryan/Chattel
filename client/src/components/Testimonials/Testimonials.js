@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CustomNav from "../Navbar/CustomNav";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import Footer from "../Footer/Footer";
 
 class Testimonials extends Component {
   render() {
@@ -53,6 +54,7 @@ class Testimonials extends Component {
             </div>
           </Carousel>
         </section>
+        <Footer />
       </React.Fragment>
     );
   }
