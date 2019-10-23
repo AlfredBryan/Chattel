@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CustomNav from "../Navbar/CustomNav";
+import Footer from "../Footer/Footer";
 
 class Features extends Component {
   render() {
@@ -33,6 +34,7 @@ class Features extends Component {
             </div>
           </div>
         </section>
+        <Footer />
       </React.Fragment>
     );
   }
