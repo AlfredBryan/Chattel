@@ -59,13 +59,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    is_Admin: {
+    admin: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
   }, {
     timestamps: false,
-    underscored: false,
   });
 
   // eslint-disable-next-line no-unused-vars
