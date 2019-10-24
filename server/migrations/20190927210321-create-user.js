@@ -41,10 +41,6 @@ module.exports = {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    admin: {
-      type: Sequelize.BOOLEAN,
-      allowNull: false,
-    },
     last_sub_date: {
       type: Sequelize.DATE,
       allowNull: true,

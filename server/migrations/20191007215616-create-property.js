@@ -33,5 +33,5 @@ module.exports = {
     },
   }),
   // eslint-disable-next-line no-unused-vars
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('properties'),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('property'),
 };

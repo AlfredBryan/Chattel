@@ -39,9 +39,9 @@ class Auth {
         firstname,
         lastname,
         email,
-        isAdmin,
         gender,
         phone_number,
+        isAdmin,
         package_id,
         password,
       });
@@ -98,7 +98,6 @@ class Auth {
       // sign user token
       const token = jwt.sign({
         id: result.id,
-        isAdmin: result.isAdmin,
       },
         process.env.SECRET_KEY, { expiresIn: '30d' });
 
