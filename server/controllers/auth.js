@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { User, packages } = require('../models');
+const { users, packages } = require('../models');
 
 class Auth {
   /**
@@ -26,8 +26,8 @@ class Auth {
     password = bcrypt.hashSync(password, 10);
 
     try {
-      // if no user exist in database, make first user to register admin
-      const checkAdmin = await User.findOne({
+      // if no users exist in database, make first users to register admin
+      const checkAdmin = await users.findOne({
         where: {},
         attributes: ['id'],
       });
@@ -35,7 +35,7 @@ class Auth {
       if (!checkAdmin) isAdmin = true;
 
 
-      await User.create({
+      await users.create({
         firstname,
         lastname,
         email,
@@ -53,7 +53,7 @@ class Auth {
     }
 
     return res.status(201).json({
-      message: 'user account created successfully',
+      message: 'users account created successfully',
       statusCode: 201,
     });
   }
@@ -68,7 +68,7 @@ class Auth {
   static async loginUser(req, res, next) {
     const { email, password } = req.body;
     try {
-      const result = await User.findOne({
+      const result = await users.findOne({
         where: {
           email,
         },
@@ -113,7 +113,7 @@ class Auth {
       });
     } catch (error) {
       const err = new Error();
-      err.message = 'internal server erro';
+      err.message = 'internal server error';
       err.details = error;
       return next(err);
     }

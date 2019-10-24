@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 const { decodeToken } = require('../helper/index');
-const { User, property, packages } = require('../models');
+const { users, property, packages } = require('../models');
 
 class PropertyController {
   /**
@@ -22,7 +22,7 @@ class PropertyController {
 
     try {
       // get package user subscribed for.
-      const userPackage = await User.findOne({
+      const userPackage = await users.findOne({
         where: {
           id: user_id,
         },

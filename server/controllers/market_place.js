@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 const { decodeToken } = require('../helper/index');
-const { Users, packages, market } = require('../models');
+const { users, packages, market } = require('../models');
 
 class MarketController {
   /**
@@ -24,7 +24,7 @@ class MarketController {
 
     try {
       // get package user subscribed for.
-      const userPackage = await Users.findOne({
+      const userPackage = await users.findOne({
         where: {
           id: user_id,
         },
