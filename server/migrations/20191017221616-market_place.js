@@ -12,7 +12,7 @@ module.exports = {
       allowNull: false,
       unique: false,
       references: {
-        model: 'User',
+        model: 'users',
         key: 'id',
       },
     },
