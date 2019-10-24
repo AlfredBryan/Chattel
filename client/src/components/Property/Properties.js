@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CustomNav from "../Navbar/CustomNav";
 
 import "./style.css";
+import Footer from "../Footer/Footer";
 
 class Properties extends Component {
   render() {
@@ -17,7 +18,7 @@ class Properties extends Component {
               <div className="property_img">
                 <div className="property_price">
                   <h3>
-                    #300,000/<small>Year</small>
+                    ₦300,000/<small>Year</small>
                   </h3>
                 </div>
               </div>
@@ -62,6 +63,7 @@ class Properties extends Component {
             </div>
           </div>
         </div>
+        <Footer/>
       </React.Fragment>
     );
   }
