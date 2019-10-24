@@ -65,7 +65,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     timestamps: false,
-    underscored: true,
+    underscored: false,
   });
 
   // eslint-disable-next-line no-unused-vars
