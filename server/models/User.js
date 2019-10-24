@@ -40,10 +40,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
       validate: {
-      // isNum: {
-      //  args: true,
-      //  msg: 'Invalid Phone Number',
-      // },
+        // isNum: {
+        //  args: true,
+        //  msg: 'Invalid Phone Number',
+        // },
       },
     },
     package_id: {
@@ -59,12 +59,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    admin: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
   }, {
     timestamps: false,
+    underscored: true,
   });
 
   // eslint-disable-next-line no-unused-vars
