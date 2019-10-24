@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const users = sequelize.define('User', {
+  const user = sequelize.define('User', {
     id: {
       allowNull: false,
       primaryKey: true,
@@ -69,8 +69,8 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   // eslint-disable-next-line no-unused-vars
-  users.associate = function model(models) {
-    users.belongsTo(models.packages, { foreignKey: 'package_id', targetKey: 'id' });
+  user.associate = function model(models) {
+    user.belongsTo(models.packages, { foreignKey: 'package_id', targetKey: 'id' });
   };
-  return users;
+  return user;
 };

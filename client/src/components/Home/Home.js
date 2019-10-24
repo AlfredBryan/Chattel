@@ -4,6 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
 import "./style.css";
+import Footer from "../Footer/Footer";
 
 class Home extends Component {
   constructor(props) {
@@ -16,8 +17,9 @@ class Home extends Component {
       <React.Fragment>
         <CustomNav />
         <div id="home_main" className="home_main">
-          <h1 className="first_t">Find Your Dream Property
-          Easily And Comfortably.</h1>
+          <h1 className="first_t">
+            Find Your Dream Property Easily And Comfortably.
+          </h1>
           <div className="home_buttons">
             <div className="first_button">
               <h5 className="find_property">FIND PROPERTY</h5>
@@ -143,7 +145,7 @@ class Home extends Component {
               </div>
             </div>
             <div className="center_div">
-              <img src="assets/3.jpeg" alt=" testimonial"/>
+              <img src="assets/3.jpeg" alt=" testimonial" />
               <div className="test_1">
                 <div className="test_img"></div>
                 <p className="test_text">
@@ -158,6 +160,7 @@ class Home extends Component {
             </div>
           </Carousel>
         </section>
+        <Footer />
       </React.Fragment>
     );
   }
