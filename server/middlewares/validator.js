@@ -1,4 +1,4 @@
-const { Users } = require('../models/');
+const { User } = require('../models/');
 
 class validator {
   /**
@@ -253,7 +253,7 @@ class validator {
   static async checkEmailExists(req, res, next) {
     const { email } = req.body;
     try{ 
-    const result = await Users.findOne({
+    const result = await User.findOne({
       where: {
         email,
       },
@@ -287,7 +287,7 @@ class validator {
   static async checkNumberExists(req, res, next) {
     // eslint-disable-next-line camelcase
     const { phone_number } = req.body;
-    const result = await Users.findOne({
+    const result = await User.findOne({
       where: {
         phone_number,
       },

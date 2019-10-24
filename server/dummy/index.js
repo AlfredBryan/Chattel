@@ -4,7 +4,7 @@
 const bcrypt = require('bcryptjs');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const chai = require('chai');
-const { Users, property } = require('../models');
+const { User, property } = require('../models');
 const server = require('../server');
 
 const hash = bcrypt.hashSync;
@@ -13,7 +13,7 @@ class dummy {
    * create first user
    */
   static createUser(email, password, phone_number) {
-    return Users.create({
+    return User.create({
       // eslint-disable-next-line object-property-newline
       email, password: hash(password, 10), firstname: 'John', lastname: 'Doe',
       // eslint-disable-next-line object-property-newline
@@ -77,7 +77,7 @@ class dummy {
    * clear user table
    */
   static destroyUsers() {
-    return Users.destroy({
+    return User.destroy({
       where: {},
       cascade: true,
     });
