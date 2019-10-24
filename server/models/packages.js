@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
   });
   packages.associate = function model(models) {
     // associations can be defined here
-    packages.hasMany(models.User, { onDelete: 'cascade', hooks: true });
+    packages.hasMany(models.users, { onDelete: 'cascade', hooks: true });
   };
   return packages;
 };
