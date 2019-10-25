@@ -9,7 +9,7 @@ class Dashboard extends Component {
         <CustomNav />
         <div className="container-fluid dashboard_main">
           <div className="row">
-            <div className="col-xs-12 col-sm-4 col-md-4">
+            <div className="col-xs-12 col-sm-4 col-md-4 user_profile_detail">
               <div className="user_profile">
                 <div className="d-flex">
                   <div className="user_img">
@@ -46,7 +46,106 @@ class Dashboard extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-xs-12 col-sm-8 col-md-8"></div>
+            <div className="col-xs-12 col-sm-8 col-md-8">
+              <div className="user_properties">
+                <div className="user_property mx-auto">
+                  <div className="user_property_img">
+                    <img src={require("../../images/property.png")} alt="" />
+                  </div>
+                  <div className="user_property_text">
+                    <div className="property_writeup">
+                      <h3>4-bedroom semi-detached</h3>
+                      <p>
+                        Status: <span>Not Occupied</span>
+                      </p>
+                      <p>
+                        Posted on: <span>June 20, 2018</span>
+                      </p>
+                      <p>
+                        Category: <span>Living apartment</span>
+                      </p>
+                      <p>
+                        Location:
+                        <span className="float-right">
+                          22, Olodo Rabata ave, Fijabi <br />
+                          street, Lagos Nigeria
+                        </span>
+                      </p>
+                    </div>
+                    <div className="card_fa">
+                      <i className="fa fa-users"></i>
+                      <i className="fa fa-pencil"></i>
+                      <i className="fa fa-trash"></i>
+                      <i className="fa fa-line-chart"></i>
+                    </div>
+                  </div>
+                </div>
+                <div className="user_property mx-auto">
+                  <div className="user_property_img">
+                    <img src={require("../../images/property.png")} alt="" />
+                  </div>
+                  <div className="user_property_text">
+                    <div className="property_writeup">
+                      <h3>4-bedroom semi-detached</h3>
+                      <p>
+                        Status: <span>Not Occupied</span>
+                      </p>
+                      <p>
+                        Posted on: <span>June 20, 2018</span>
+                      </p>
+                      <p>
+                        Category: <span>Living apartment</span>
+                      </p>
+                      <p>
+                        Location:
+                        <span className="float-right">
+                          22, Olodo Rabata ave, Fijabi <br />
+                          street, Lagos Nigeria
+                        </span>
+                      </p>
+                    </div>
+                    <div className="card_fa">
+                      <i className="fa fa-users"></i>
+                      <i className="fa fa-pencil"></i>
+                      <i className="fa fa-trash"></i>
+                      <i className="fa fa-line-chart"></i>
+                    </div>
+                  </div>
+                </div>
+                <div className="user_property mx-auto">
+                  <div className="user_property_img">
+                    <img src={require("../../images/property.png")} alt="" />
+                  </div>
+                  <div className="user_property_text">
+                    <div className="property_writeup">
+                      <h3>4-bedroom semi-detached</h3>
+                      <p>
+                        Status: <span>Not Occupied</span>
+                      </p>
+                      <p>
+                        Posted on: <span>June 20, 2018</span>
+                      </p>
+                      <p>
+                        Category: <span>Living apartment</span>
+                      </p>
+                      <p>
+                        Location:
+                        <span className="float-right">
+                          22, Olodo Rabata ave, Fijabi <br />
+                          street, Lagos Nigeria
+                        </span>
+                      </p>
+                    </div>
+                    <div className="card_fa">
+                      <i className="fa fa-users"></i>
+                      <i className="fa fa-pencil"></i>
+                      <i className="fa fa-trash"></i>
+                      <i className="fa fa-line-chart"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </React.Fragment>
