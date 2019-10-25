@@ -6,6 +6,7 @@ import Features from "./components/Features/Features";
 import Testimonials from "./components/Testimonials/Testimonials";
 import Properties from "./components/Property/Properties";
 import Dashboard from "./components/User/Dashboard";
+import Login from "./components/User/Login";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/register" component={Register} />
+        <Route exact path="/login" component={Login} />
         <Route exact path="/features" component={Features} />
         <Route exact path="/testimonials" component={Testimonials} />
         <Route exact path="/properties" component={Properties} />

@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 import "./style.css";
+
+const Url = process.env.REACT_APP_BASE_URL;
 
 class Register extends Component {
   constructor(props) {
@@ -10,9 +14,22 @@ class Register extends Component {
       last_name: "",
       first_name: "",
       email: "",
-      password: ""
+      password: "",
+      loading: false
     };
   }
+
+  submitHandler = e => {
+    const { first_name, last_name, email, password } = this.state;
+    this.setState({
+      loading: true
+    });
+    axios
+      .post(`${Url}/register`, { first_name, last_name, email, password })
+      .then(res => {
+        console.log(res);
+      });
+  };
 
   handleChange = e => {
     this.setState({
@@ -21,8 +38,7 @@ class Register extends Component {
   };
 
   render() {
-    const { first_name, last_name, email, password } = this.state;
-    console.log(first_name);
+    const { first_name, last_name, email, password, loading } = this.state;
     return (
       <React.Fragment>
         <div className="register_cover">
@@ -78,7 +94,9 @@ class Register extends Component {
               </div>
               <div className="col-md-12 d-flex form-group button_form">
                 <button className="form_button">SIGN UP</button>
-                <p className="register_text"> Already have an account?</p>
+                <Link to="/login">
+                  <p className="register_text"> Already have an account?</p>
+                </Link>
               </div>
             </form>
           </div>
