@@ -10,9 +10,9 @@ services:
 #         - "node_modules"
 script: npm run test
 before_script:
+    - npm install mocha chai chai-http faker cross-env
     - cd server
     - npm run create:test:db
     - npm run migrate:test
     - npm run seed:test
-    - npm install mocha chai chai-http faker cross-env
 after_script:
