@@ -1,0 +1,18 @@
+language: node_js
+    - "12.5.0"
+install:
+    - npm cache rm --force
+    - npm install
+services:
+    - postgresql
+# cache:
+#     directories:
+#         - "node_modules"
+script: npm run test
+before_script:
+    - cd server
+    - npm run create:test:db
+    - npm run migrate:test
+    - npm run seed:test
+    - npm install mocha chai chai-http faker cross-env
+after_script:
