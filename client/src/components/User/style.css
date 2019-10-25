@@ -8,9 +8,9 @@
 .register_form {
     display: inline-block;
     width: 600px;
-    height: 550px;
+    height: 650px;
     background: #FFFFFF;
-    margin-top: 6em;
+    margin-top: 1em;
 }
 
 .register_header {
@@ -59,7 +59,9 @@
     color: #333333;
     padding: 0.5em
 }
+
 .button_form {
     margin-top: 3em;
     margin-left: 0.5em;
 }
+
