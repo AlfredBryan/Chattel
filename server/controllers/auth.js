@@ -53,7 +53,7 @@ class Auth {
     }
 
     return res.status(201).json({
-      message: 'users account created successfully',
+      message: 'user account created successfully',
       statusCode: 201,
     });
   }
